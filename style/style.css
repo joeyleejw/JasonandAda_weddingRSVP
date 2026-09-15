@@ -190,7 +190,7 @@ section#welcome .bg-banner-wrapper {
   align-items: end;
 }
 section#welcome .bg-banner {
-  background-image: url("../Assets/yellowFan.jpg");
+  background-image: url("../Assets/yellowFan.avif");
 }
 section#details .top-section {
   background-color: #b10008;
@@ -199,7 +199,7 @@ section#details .top-section .wedding-quote {
   top: 8em;
 }
 section#details .bg-banner {
-  background-image: url("../Assets/BlackAttire.jpg");
+  background-image: url("../Assets/BlackAttire.avif");
   background-size: cover;
   background-position-x: 25%;
 }
