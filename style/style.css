@@ -1,0 +1,375 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playpen+Sans:wght@100..800&display=swap");
+#mobile-only-message {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  #page-content {
+    display: none;
+  }
+  #mobile-only-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background: #f7f0e4;
+    text-align: center;
+  }
+  .mobile-only-content {
+    max-width: 400px;
+    padding: 2rem;
+  }
+  .mobile-only-icon {
+    font-size: 48px;
+    margin-bottom: 1rem;
+  }
+}
+* {
+  font-family: "Playpen Sans", sans-serif;
+  font-weight: 100;
+  transition: 0.3s ease-in-out;
+}
+*:focus {
+  outline: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: #c9a24b;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+a {
+  background-color: transparent;
+  font-weight: 400;
+  color: #e8d9b5;
+  text-decoration: none;
+  display: inline-block;
+}
+
+nav.navbar {
+  background: linear-gradient(to right, #97010d, #b10008, #97010d);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+nav.navbar span.welcome-text {
+  color: #c9a24b;
+}
+nav.navbar .navbar-brand {
+  color: #e8d9b5;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+}
+nav.navbar button.navbar-toggler {
+  border-color: #c9a24b;
+  color: #c9a24b;
+}
+nav.navbar a.nav-link {
+  color: #c9a24b;
+  border-bottom: 2px solid transparent;
+}
+nav.navbar a.nav-link:hover {
+  color: #e8d9b5;
+  border-bottom: 2px solid #e8d9b5;
+}
+nav.navbar a.nav-link.active {
+  color: #e8d9b5;
+  border-bottom: 2px solid #e8d9b5;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+section p {
+  color: #e8d9b5;
+}
+section .bg-banner-wrapper {
+  background-size: 140%;
+  background-position-x: center;
+  background-position-y: top;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 90vh;
+}
+section .bg-banner-wrapper .main-headline {
+  background: linear-gradient(to bottom, #b10008 80%, transparent);
+  color: #c9a24b;
+  width: 100%;
+}
+section .bg-banner-wrapper .main-headline .display-1 {
+  font-weight: revert;
+  padding: 0.5rem 0;
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+section .bg-banner-wrapper .main-headline a.rsvp-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid #c9a24b;
+  background-color: transparent;
+  font-weight: 400;
+  color: #c9a24b;
+  text-decoration: none;
+  display: inline-block;
+  margin: 1rem 0;
+  margin: 0.5rem 0;
+}
+section .bg-banner-wrapper .main-headline:last-child {
+  background: linear-gradient(to top, #b10008 80%, transparent);
+}
+section .bg-banner-wrapper .starting-line {
+  position: relative;
+}
+section .bg-banner-wrapper .starting-line::before {
+  content: "";
+  display: block;
+  position: absolute;
+  min-height: 4em;
+  border: 1px dashed #c9a24b;
+  z-index: 1;
+  max-width: 1px;
+  left: 0;
+  right: 0;
+  bottom: -2em;
+  margin: 0 auto;
+}
+section .bg-blend-section {
+  left: 0;
+  width: 100%;
+  top: 8em;
+}
+section .rounded-big-top {
+  border-radius: 20em 20em 0 0;
+}
+section .rounded-big-btm-right {
+  border-bottom-right-radius: 15em;
+}
+section .wedding-quote {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  color: #c9a24b;
+  padding: 2rem 1rem;
+  max-width: 66.6666666667%;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+section .wedding-quote::before, section .wedding-quote::after {
+  content: "";
+  display: block;
+  border: 2px solid #c9a24b;
+  height: 20px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+section .wedding-quote::before {
+  top: 0;
+  border-bottom: 0px;
+}
+section .wedding-quote::after {
+  bottom: 0;
+  border-top: 0px;
+}
+section#welcome .bg-banner-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+section#welcome .bg-banner {
+  background-image: url("../Assets/yellowFan.jpg");
+}
+section#details .top-section {
+  background-color: #b10008;
+}
+section#details .top-section .wedding-quote {
+  top: 8em;
+}
+section#details .bg-banner {
+  background-image: url("../Assets/BlackAttire.jpg");
+  background-size: cover;
+  background-position-x: 25%;
+}
+section#details .bg-banner .wedding-quote {
+  top: 6em;
+}
+section#rsvp {
+  display: flex;
+  flex-direction: column;
+  color: #e8d9b5;
+}
+section#rsvp .bg-banner {
+  background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkDMkrzhgQhS3WAv_GclDNOhKZqhlGrWv1XjOplv11pYIHkIYRAaIwyAu0tOr0J2XItFfxI5t4aPi-BR_9oY9gADoLq_DxZyU8iflZlGUE4X_UX3Axvbkvz0iaIfJyeq4ICfiNyOQ=s680-w680-h510-rw");
+  height: 100%;
+  margin-top: -15em;
+  padding-top: 20em;
+  padding-bottom: 2em;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+section#rsvp .bg-banner.bg-overlay::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #97010d, #b10008, #97010d);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.85;
+}
+section#rsvp .bg-banner.bg-overlay div {
+  z-index: 3;
+  position: relative;
+}
+section#rsvp .bg-banner.bg-overlay .playground {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section#rsvp .bg-banner.bg-overlay .playground::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: #c9a24b;
+}
+section#rsvp .bg-banner.bg-overlay .playground > div {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 5px;
+}
+section#rsvp .bg-banner.bg-overlay .playground > div i.bi {
+  font-size: 1.25rem;
+}
+section#rsvp .bg-banner.bg-overlay .playground > div img {
+  width: 100%;
+  filter: invert(99%) sepia(32%) saturate(1469%) hue-rotate(315deg) brightness(100%) contrast(82%);
+  max-width: 20px;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form label {
+  margin-bottom: 0.5rem;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form .form-disclaimer {
+  color: #e8d9b5;
+  display: block;
+  margin-bottom: 1rem;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form .input-phone-number {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form .input-phone-number input {
+  margin-bottom: 0px;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form hr {
+  color: #c9a24b;
+  opacity: 0.8;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form input,
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form select {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: #f7f0e4;
+  border-color: #c9a24b;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 0.5rem;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form select option {
+  font-size: smaller;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form button {
+  background: #c9a24b;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border: 2px solid #c9a24b;
+  font-weight: 400;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form button:active {
+  background: transparent;
+  color: #c9a24b;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form #meal-fields {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form #meal-fields div {
+  display: flex;
+}
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form #meal-fields div * {
+  width: 50%;
+}
+section#rsvp .bg-banner #countdown {
+  display: flex;
+  justify-content: space-between;
+}
+section#rsvp .bg-banner #countdown div {
+  display: flex;
+  flex: 0 0 auto;
+  width: 22.2222222222%;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.7rem;
+  color: #c9a24b;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+section#rsvp .bg-banner #countdown div::before, section#rsvp .bg-banner #countdown div::after {
+  content: "";
+  display: block;
+  border: 2px solid #c9a24b;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+}
+section#rsvp .bg-banner #countdown div::before {
+  border-right: 0px;
+  border-bottom: 0px;
+  top: 0;
+  left: 0;
+}
+section#rsvp .bg-banner #countdown div::after {
+  border-left: 0px;
+  border-top: 0px;
+  bottom: 0;
+  right: 0;
+}
+section#rsvp .bg-banner #countdown div span {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+footer {
+  background: linear-gradient(to right, #97010d, #b10008, #97010d);
+  color: #e8d9b5;
+}
+footer a {
+  color: #c9a24b;
+}/*# sourceMappingURL=style.css.map */

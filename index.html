@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason and Ada Wedding RSVP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div id="mobile-only-message">
+        <div class="mobile-only-content">
+            <p class="mobile-only-icon">📱</p>
+            <h2>Best Viewed on Mobile</h2>
+            <p>This invitation was designed for mobile screens. Please open this page on your phone for the full experience.</p>
+        </div>
+    </div>
+    <div id="page-content">
+        <!-- navigation bar -->
+        <nav class="navbar sticky-top">
+            <div class="container justify-content-between">
+                <span class="welcome-text">Welcome</span>
+                <!--囍-->
+                <span class="navbar-brand">J & A</span>
+                <a class="nav-link" aria-current="page" href="#rsvp">RSVP</a>
+                <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="d-none collapse navbar-collapse justify-content-end flex-grow-0" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#rsvp">RSVP</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section id="welcome" class="z-2 position-relative">
+            <div class="bg-banner-wrapper bg-banner">
+                <div class="main-headline py-5">
+                    <div class="container text-center">
+                        <h2 class="mb-1">We're Getting Married!</h2>
+                        <p>Join us as we celebrate a new chapter, surrounded by the people we love</p>
+                    </div>
+
+                </div>
+                <div class="main-headline py-5 starting-line">
+                    <div class="container text-center">
+                        <h1 class="display-1">JASON & ADA</h1>
+                        <a href="#rsvp" class="rsvp-button">Kindly RSVP Below</a>
+                        <p><small>before 1st November 2026</small></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="details" class="position-relative z-1">
+            <div class="position-relative pt-5 top-section">
+                <div class="wedding-quote text-center">
+                    <p>A crown of red, a promise sealed — this is where our story begins</p>
+                </div>
+                <img src="Assets/whitePink.jpg" class="img-fluid rounded-big-top" alt="Wedding Details">
+            </div>
+            <div class="bg-banner-wrapper bg-banner rounded-big-btm-right">
+                <div class="wedding-quote text-center">
+                    <p>From strangers to soulmates, and now, to husband and wife</p>
+                </div>
+            </div>
+        </section>
+        <section id="rsvp">
+            <div class="bg-banner-wrapper bg-banner bg-overlay position-relative">
+                <div class="container text-center mb-4" id="countdownText">
+                    <h2 class="mb-2">Our Big Day Is Almost Here</h2>
+                    <p>With hearts full of joy, we invite you to witness our forever in</p>
+                </div>
+                <div class="container mb-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-4 mb-4 mb-sm-0">
+                            <div id="countdown">
+                                <div><span id="days">0</span><label>Days</label></div>
+                                <div><span id="hours">0</span><label>Hours</label></div>
+                                <div><span id="minutes">0</span><label>Minutes</label></div>
+                                <div><span id="seconds">0</span><label>Seconds</label></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-8">
+                            <div class="position-relative playground">
+                                <div class="date">
+                                    <i class="bi bi-calendar-heart"></i> 12 December, 2026 (Saturday)
+                                </div>
+                                <div class="reception-time">
+                                    <img src="Assets/wine-glasses.png" alt="Reception"> Reception — 6:30pm
+                                </div>
+                                <div class="dinner-time">
+                                    <img src="Assets/food-and-restaurant.png" alt="Dinner"> Dinner — 6:30pm
+                                </div>
+                                <div class="location">
+                                    <i class="bi bi-geo-alt"></i> Xin Cuisine Chinese Restaurant Concorde Hotel Kuala
+                                    Lumpur
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section container p-4">
+                    <div class="container text-center mb-3">
+                        <h2 class="mb-2">Join Us in Celebration</h2>
+                        <p>We'd love to know if you'll be celebrating with us — kindly RSVP below:</p>
+                    </div>
+                    <!-- form -->
+                    <iframe name="hidden-iframe" style="display:none;"></iframe>
+
+                    <form id="rsvp-form" target="hidden-iframe" method="POST"
+                        action="https://script.google.com/macros/s/AKfycbx7C51DdhvXx3W1keMZEEunrG2RslZSlHzDjxBO5HvA726pbh-FK43nf73U8OSLzKTw3w/exec">
+
+                        <!-- VISIBLE FIELDS -->
+                        <label>Full Name</label>
+                        <input type="text" id="name" required>
+
+                        <label>Will you be attending?</label>
+                        <select id="attending" required>
+                            <option value="">Select</option>
+                            <option value="yes">Love to!</option>
+                            <option value="no">Regretfully can't make it</option>
+                        </select>
+
+                        <div id="attending-fields" style="display:none">
+                            <hr>
+                            <div class="row justify-content-between">
+                                <div class="col-12">
+                                    <label>Phone Number</label>
+                                    <div class="input-phone-number">
+                                        <span class="input-phone-number-text">+60</span>
+                                        <input type="tel" id="phone" placeholder="123456789" pattern="[0-9]{8,10}"
+                                            maxlength="9">
+                                    </div>
+                                    <small class="form-disclaimer">Enter (e.g. 123456789)</small>
+                                </div>
+                                <div class="col-12">
+                                    <label>How many guests? (including yourself)</label>
+                                    <input type="number" id="guests" min="1" value="1">
+                                </div>
+
+                                <div class="col-12">
+                                    <!-- Guest name fields get injected here -->
+                                    <div id="guest-names-fields"></div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label>How many children (age 1–12)?</label>
+                                    <input type="number" id="children" min="0" value="0">
+                                </div>
+                            </div>
+
+                            <!-- Baby chair — only shows if children > 0 -->
+                            <div id="babychair-wrapper" style="display:none">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <label>Do you need a baby chair?</label>
+                                        <select id="babychair">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div id="babychair-count-wrapper" style="display:none">
+                                            <label>How many baby chairs do you need?</label>
+                                            <input type="number" id="babychair-count" min="1" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Meal preference — optional counts -->
+                            <fieldset id="meal-fields">
+                                <legend>Meal Preference (optional)</legend>
+                                <p class="form-disclaimer">Let us know if any of your guests have dietary needs.</p>
+
+                                <div class="row justify-content-between">
+                                    <div class="col-6"><label>Vegetarian</label>
+                                        <input type="number" class="meal-count" id="meal-vegetarian" min="0" value="0">
+
+                                    </div>
+                                    <div class="col-6"><label>Halal</label>
+                                        <input type="number" class="meal-count" id="meal-halal" min="0" value="0">
+                                    </div>
+                                </div>
+
+                                <p id="meal-summary" class="form-disclaimer d-none"></p>
+                                <p id="meal-error" class="text-danger" style="display:none"></p>
+                            </fieldset>
+                        </div>
+
+                        <div id="regrets-field" class="mb-3" style="display:none">
+                            <div class="d-flex flex-column">
+                                <label>Sending Us Your Blessings</label>
+                                <small class="form-disclaimer">We understand you can't join us, but we'd love to hear
+                                    from
+                                    you</small>
+                                <textarea id="message"
+                                    placeholder="Wishing you a lifetime of love and happiness..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- HIDDEN FIELDS -->
+                        <input type="hidden" name="name" id="name-hidden">
+                        <input type="hidden" name="phone" id="phone-hidden">
+                        <input type="hidden" name="attending" id="attending-hidden">
+                        <input type="hidden" name="guests" id="guests-hidden">
+                        <input type="hidden" name="guestNames" id="guestnames-hidden">
+                        <input type="hidden" name="children" id="children-hidden">
+                        <input type="hidden" name="babychair" id="babychair-hidden">
+                        <input type="hidden" name="meals" id="meals-hidden">
+                        <input type="hidden" name="message" id="message-hidden">
+
+                        <button type="submit">Submit RSVP</button>
+                    </form>
+
+                    <p id="status-message"></p>
+                </div>
+            </div>
+
+        </section>
+        <footer class="py-3">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-12 col-sm-6 mb-2"><small>Author: Joey Lee @ 2026</small></div>
+                    <div class="col-12 col-sm-6">
+                        <small><b>Contact Us</b></small>
+                        <small>
+                            <ul>
+                                <li>Jason: <a href="tel:60102720104">+60 10-272 0104</a></li>
+                                <li>Ada: <a href="tel:60129858990">+60 12-985 8990</a></li>
+                            </ul>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        type="text/javascript"></script>
+    <script src="script/countdown.js" type="text/javascript"></script>
+    <script src="script/form.js" type="text/javascript"></script>
+    <script src="script/main.js" type="text/javascript"></script>
+</body>
+
+</html>
