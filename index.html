@@ -15,7 +15,8 @@
         <div class="mobile-only-content">
             <p class="mobile-only-icon">📱</p>
             <h2>Best Viewed on Mobile</h2>
-            <p>This invitation was designed for mobile screens. Please open this page on your phone for the full experience.</p>
+            <p>This invitation was designed for mobile screens. Please open this page on your phone for the full
+                experience.</p>
         </div>
     </div>
     <div id="page-content">
@@ -23,50 +24,45 @@
         <nav class="navbar sticky-top">
             <div class="container justify-content-between">
                 <span class="welcome-text">Welcome</span>
-                <!--囍-->
-                <span class="navbar-brand">J & A</span>
-                <a class="nav-link" aria-current="page" href="#rsvp">RSVP</a>
-                <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="d-none collapse navbar-collapse justify-content-end flex-grow-0" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#rsvp">RSVP</a>
-                        </li>
-                    </ul>
-                </div>
+                <span class="navbar-brand">囍</span>
+                <a href="" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <span id="current-lang-label">EN</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" onclick="setLanguage('en'); return false;">EN</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="setLanguage('zh'); return false;">ZH</a></li>
+                </ul>
             </div>
         </nav>
 
         <section id="welcome" class="z-2 position-relative">
             <div class="bg-banner-wrapper bg-banner">
-                <div class="main-headline py-5">
+                <div class="main-headline py-5 px-4">
                     <div class="container text-center">
-                        <h2 class="mb-1">We're Getting Married!</h2>
-                        <p>Join us as we celebrate a new chapter, surrounded by the people we love</p>
+                        <h2 class="mb-1" data-i18n="welcomeHeadline"></h2>
+                        <p data-i18n="welcomeSubheadline"></p>
                     </div>
 
                 </div>
                 <div class="main-headline py-5 starting-line">
                     <div class="container text-center">
-                        <h1 class="display-1">JASON & ADA</h1>
-                        <a href="#rsvp" class="rsvp-button">Kindly RSVP Below</a>
-                        <p><small>before 1st November 2026</small></p>
+                        <h1 class="display-1" data-i18n="lovelyCouple"></h1>
+                        <a href="#rsvp" class="RSVPbutton">RSVP <i class="bi bi-arrow-down"></i></a>
+                        <p><small data-i18n="RSVPbefore"></small></p>
                     </div>
                 </div>
             </div>
         </section>
         <section id="details" class="position-relative z-1">
             <div class="position-relative pt-5 top-section">
-                <div class="wedding-quote text-center">
+                <div class="wedding-quote text-center d-none">
                     <p>A crown of red, a promise sealed — this is where our story begins</p>
                 </div>
                 <img loading="lazy" src="Assets/whitePink.avif" class="img-fluid rounded-big-top" alt="Wedding Details">
             </div>
             <div class="bg-banner-wrapper bg-banner rounded-big-btm-right">
-                <div class="wedding-quote text-center">
+                <div class="wedding-quote text-center d-none">
                     <p>From strangers to soulmates, and now, to husband and wife</p>
                 </div>
             </div>
@@ -74,33 +70,34 @@
         <section id="rsvp">
             <div class="bg-banner-wrapper bg-banner bg-overlay position-relative">
                 <div class="container text-center mb-4" id="countdownText">
-                    <h2 class="mb-2">Our Big Day Is Almost Here</h2>
-                    <p>With hearts full of joy, we invite you to witness our forever in</p>
+                    <h2 class="mb-2" data-i18n="RSVPheadline"></h2>
+                    <p data-i18n="RSVPsubheadline"></p>
                 </div>
                 <div class="container mb-4">
                     <div class="row">
                         <div class="col-12 col-sm-4 mb-4 mb-sm-0">
                             <div id="countdown">
-                                <div><span id="days">0</span><label>Days</label></div>
-                                <div><span id="hours">0</span><label>Hours</label></div>
-                                <div><span id="minutes">0</span><label>Minutes</label></div>
-                                <div><span id="seconds">0</span><label>Seconds</label></div>
+                                <div><span id="days">0</span><label data-i18n="countdownDays"></label></div>
+                                <div><span id="hours">0</span><label data-i18n="countdownHours"></label></div>
+                                <div><span id="minutes">0</span><label data-i18n="countdownMinutes"></label></div>
+                                <div><span id="seconds">0</span><label data-i18n="countdownSeconds"></label></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-8">
                             <div class="position-relative playground">
                                 <div class="date">
-                                    <i class="bi bi-calendar-heart"></i> 12 December, 2026 (Saturday)
+                                    <i class="bi bi-calendar-heart"></i> <span data-i18n="RSVPdate"></span>
                                 </div>
                                 <div class="reception-time">
-                                    <img loading="lazy" src="Assets/wine-glasses.avif" alt="Reception"> Reception — 6:30pm
+                                    <img loading="lazy" src="Assets/wine-glasses.avif" alt="Reception"> <span
+                                        data-i18n="RSVPreception"></span>
                                 </div>
                                 <div class="dinner-time">
-                                    <img loading="lazy" src="Assets/food-and-restaurant.avif" alt="Dinner"> Dinner — 6:30pm
+                                    <img loading="lazy" src="Assets/food-and-restaurant.avif" alt="Dinner"> <span
+                                        data-i18n="RSVPdinner"></span>
                                 </div>
                                 <div class="location">
-                                    <i class="bi bi-geo-alt"></i> Xin Cuisine Chinese Restaurant Concorde Hotel Kuala
-                                    Lumpur
+                                    <i class="bi bi-geo-alt"></i> <span data-i18n="RSVPlocation"></span>
                                 </div>
                             </div>
                         </div>
@@ -108,8 +105,8 @@
                 </div>
                 <div class="form-section container p-4">
                     <div class="container text-center mb-3">
-                        <h2 class="mb-2">Join Us in Celebration</h2>
-                        <p>We'd love to know if you'll be celebrating with us — kindly RSVP below:</p>
+                        <h2 class="mb-2" data-i18n="formHeadline"></h2>
+                        <p data-i18n="formSubheadline"></p>
                     </div>
                     <!-- form -->
                     <iframe name="hidden-iframe" style="display:none;"></iframe>
@@ -118,30 +115,30 @@
                         action="https://script.google.com/macros/s/AKfycbx7C51DdhvXx3W1keMZEEunrG2RslZSlHzDjxBO5HvA726pbh-FK43nf73U8OSLzKTw3w/exec">
 
                         <!-- VISIBLE FIELDS -->
-                        <label>Full Name</label>
+                        <label data-i18n="formFullname">Full Name</label>
                         <input type="text" id="name" required>
 
-                        <label>Will you be attending?</label>
+                        <label data-i18n="formAttend"></label>
                         <select id="attending" required>
-                            <option value="">Select</option>
-                            <option value="yes">Love to!</option>
-                            <option value="no">Regretfully can't make it</option>
+                            <option data-i18n="formAttendselect" value=""></option>
+                            <option data-i18n="formAttendyes" value="yes"></option>
+                            <option data-i18n="formAttendno" value="no"></option>
                         </select>
 
                         <div id="attending-fields" style="display:none">
                             <hr>
                             <div class="row justify-content-between">
                                 <div class="col-12">
-                                    <label>Phone Number</label>
+                                    <label data-i18n="formPhoneNumber"></label>
                                     <div class="input-phone-number">
                                         <span class="input-phone-number-text">+60</span>
                                         <input type="tel" id="phone" placeholder="123456789" pattern="[0-9]{8,10}"
                                             maxlength="9">
                                     </div>
-                                    <small class="form-disclaimer">Enter (e.g. 123456789)</small>
+                                    <small class="form-disclaimer" data-i18n="formPhoneDisclaimer"></small>
                                 </div>
                                 <div class="col-12">
-                                    <label>How many guests? (including yourself)</label>
+                                    <label data-i18n="formGuestsNumber"></label>
                                     <input type="number" id="guests" min="1" value="1">
                                 </div>
 
@@ -151,7 +148,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <label>How many children (age 1–12)?</label>
+                                    <label data-i18n="formGuestsChildren"></label>
                                     <input type="number" id="children" min="0" value="0">
                                 </div>
                             </div>
@@ -160,16 +157,16 @@
                             <div id="babychair-wrapper" style="display:none">
                                 <div class="row justify-content-between">
                                     <div class="col-6">
-                                        <label>Do you need a baby chair?</label>
+                                        <label data-i18n="formBabyChairNeed"></label>
                                         <select id="babychair">
-                                            <option value="no">No</option>
-                                            <option value="yes">Yes</option>
+                                            <option data-i18n="formBabyChairNo" value="no"></option>
+                                            <option data-i18n="formBabyChairYes" value="yes"></option>
                                         </select>
                                     </div>
 
                                     <div class="col-6">
                                         <div id="babychair-count-wrapper" style="display:none">
-                                            <label>How many baby chairs do you need?</label>
+                                            <label data-i18n="formBabyChairYesNum"></label>
                                             <input type="number" id="babychair-count" min="1" value="1">
                                         </div>
                                     </div>
@@ -178,15 +175,15 @@
                             <hr>
                             <!-- Meal preference — optional counts -->
                             <fieldset id="meal-fields">
-                                <legend>Meal Preference (optional)</legend>
-                                <p class="form-disclaimer">Let us know if any of your guests have dietary needs.</p>
+                                <legend data-i18n="formMealPreferencetitle"></legend>
+                                <p class="form-disclaimer" data-i18n="formMealPreferencesubtitle"></p>
 
                                 <div class="row justify-content-between">
-                                    <div class="col-6"><label>Vegetarian</label>
+                                    <div class="col-6"><label data-i18n="formMealPreferencevegetarian"></label>
                                         <input type="number" class="meal-count" id="meal-vegetarian" min="0" value="0">
 
                                     </div>
-                                    <div class="col-6"><label>Halal</label>
+                                    <div class="col-6"><label data-i18n="formMealPreferencehalal"></label>
                                         <input type="number" class="meal-count" id="meal-halal" min="0" value="0">
                                     </div>
                                 </div>
@@ -198,10 +195,8 @@
 
                         <div id="regrets-field" class="mb-3" style="display:none">
                             <div class="d-flex flex-column">
-                                <label>Sending Us Your Blessings</label>
-                                <small class="form-disclaimer">We understand you can't join us, but we'd love to hear
-                                    from
-                                    you</small>
+                                <label data-i18n="formSendUsBlessingTitle"></label>
+                                <small class="form-disclaimer" data-i18n="formSendUsBlessingSubtitle"></small>
                                 <textarea id="message"
                                     placeholder="Wishing you a lifetime of love and happiness..."></textarea>
                             </div>
@@ -218,7 +213,7 @@
                         <input type="hidden" name="meals" id="meals-hidden">
                         <input type="hidden" name="message" id="message-hidden">
 
-                        <button type="submit">Submit RSVP</button>
+                        <button type="submit" data-i18n="button-submit">Submit RSVP</button>
                     </form>
 
                     <p id="status-message"></p>
@@ -229,13 +224,15 @@
         <footer class="py-3">
             <div class="container">
                 <div class="row justify-content-between">
-                    <div class="col-12 col-sm-6 mb-2"><small>Author: Joey Lee @ 2026</small></div>
+                    <div class="col-12 col-sm-6 mb-2"><small data-i18n="authorCopyright"></small></div>
                     <div class="col-12 col-sm-6">
-                        <small><b>Contact Us</b></small>
+                        <small><b data-i18n="contactUstext"></b></small>
                         <small>
                             <ul>
-                                <li>Jason: <a href="tel:60129858990">+60 12-985 8990</a></li>
-                                <li>Ada: <a href="tel:60102720104">+60 10-272 0104</a></li>
+                                <li><span data-i18n="contactUsmale"></span>: <a href="tel:60129858990">+60 12-985
+                                        8990</a></li>
+                                <li><span data-i18n="contactUsfemale"></span>: <a href="tel:60102720104">+60 10-272
+                                        0104</a></li>
                             </ul>
                         </small>
                     </div>
@@ -243,8 +240,9 @@
             </div>
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="script/translatation.js" type="text/javascript"></script>
+    <script src="script/language.js" type="text/javascript"></script>
     <script src="script/countdown.js" type="text/javascript"></script>
     <script src="script/form.js" type="text/javascript"></script>
     <script src="script/main.js" type="text/javascript"></script>
