@@ -14,7 +14,7 @@ const translations = {
         countdownMinutes: "Minutes",
         countdownSeconds: "Seconds",
         RSVPdate: "12 December, 2026 (Saturday)",
-        RSVPrecption: "Reception — 6:00pm",
+        RSVPreception: "Reception — 6:00pm",
         RSVPdinner: "Dinner — 7:00pm",
         RSVPlocation: "Xin Cuisine Chinese Restaurant Concorde Hotel Kuala Lumpur",
 
@@ -62,7 +62,7 @@ const translations = {
         countdownMinutes: "Minutes",
         countdownSeconds: "Seconds",
         RSVPdate: "12 December, 2026 (Saturday)",
-        RSVPrecption: "Reception — 6:00pm",
+        RSVPreception: "Reception — 6:00pm",
         RSVPdinner: "Dinner — 7:00pm",
         RSVPlocation: "Xin Cuisine Chinese Restaurant Concorde Hotel Kuala Lumpur",
 
