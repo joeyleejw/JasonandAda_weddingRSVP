@@ -157,10 +157,10 @@ section .bg-banner-wrapper .main-headline a.rsvp-button {
 section .bg-banner-wrapper .main-headline:last-child {
   background: linear-gradient(to top, #b10008 80%, transparent);
 }
-section .bg-banner-wrapper .starting-line {
+section .starting-line {
   position: relative;
 }
-section .bg-banner-wrapper .starting-line::before {
+section .starting-line::before {
   content: "";
   display: block;
   position: absolute;
@@ -181,36 +181,8 @@ section .bg-blend-section {
 section .rounded-big-top {
   border-radius: 20em 20em 0 0;
 }
-section .rounded-big-btm-right {
-  border-bottom-right-radius: 15em;
-}
-section .wedding-quote {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  color: #c9a24b;
-  padding: 2rem 1rem;
-  max-width: 66.6666666667%;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-}
-section .wedding-quote::before, section .wedding-quote::after {
-  content: "";
-  display: block;
-  border: 2px solid #c9a24b;
-  height: 20px;
-  width: 100%;
-  position: absolute;
-  left: 0;
-}
-section .wedding-quote::before {
-  top: 0;
-  border-bottom: 0px;
-}
-section .wedding-quote::after {
-  bottom: 0;
-  border-top: 0px;
+section .rounded-big-btm {
+  border-radius: 0 0 15em 15em;
 }
 section#welcome .bg-banner-wrapper {
   display: flex;
@@ -221,19 +193,26 @@ section#welcome .bg-banner-wrapper {
 section#welcome .bg-banner {
   background-image: url("../Assets/yellowFan.avif");
 }
-section#details .top-section {
-  background-color: #b10008;
-}
-section#details .top-section .wedding-quote {
-  top: 8em;
+section#details {
+  background: linear-gradient(to bottom, #b10008 50%, transparent);
 }
 section#details .bg-banner {
-  background-image: url("../Assets/BlackAttire.avif");
-  background-size: cover;
-  background-position-x: 25%;
+  height: 60vh;
+  background-position-y: bottom;
 }
-section#details .bg-banner .wedding-quote {
-  top: 6em;
+section#details .bg-banner.rounded-big-top {
+  background-image: url("../Assets/BlackAttire.avif");
+  background-position-x: 28%;
+  background-size: 250%;
+}
+section#details .bg-banner.rounded-big-btm {
+  background-image: url("../Assets/whitePink.avif");
+  background-size: 125%;
+}
+@media (max-height: 670px) {
+  section#details .bg-banner.rounded-big-btm {
+    height: 78vh;
+  }
 }
 section#rsvp {
   display: flex;
@@ -243,7 +222,7 @@ section#rsvp {
 section#rsvp .bg-banner {
   background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkDMkrzhgQhS3WAv_GclDNOhKZqhlGrWv1XjOplv11pYIHkIYRAaIwyAu0tOr0J2XItFfxI5t4aPi-BR_9oY9gADoLq_DxZyU8iflZlGUE4X_UX3Axvbkvz0iaIfJyeq4ICfiNyOQ=s680-w680-h510-rw");
   height: 100%;
-  margin-top: -15em;
+  margin-top: -18em;
   padding-top: 20em;
   padding-bottom: 2em;
   background-size: cover;
@@ -316,9 +295,8 @@ section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form hr {
   color: #c9a24b;
   opacity: 0.8;
 }
-section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form input,
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form input:not(input[type=checkbox]),
 section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form select {
-  margin-bottom: 1rem;
   padding: 0.5rem;
   width: 100%;
   background-color: #f7f0e4;
@@ -401,6 +379,4 @@ footer {
 }
 footer a {
   color: #c9a24b;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

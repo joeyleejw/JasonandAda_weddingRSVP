@@ -162,21 +162,21 @@ section {
 				background: linear-gradient(to top, $brightRed 80%, transparent);
 			}
 		}
-		.starting-line {
-			position: relative;
-			&::before {
-				content: "";
-				display: block;
-				position: absolute;
-				min-height: 4em;
-				border: 1px dashed $secondary;
-				z-index: 1;
-				max-width: 1px;
-				left: 0;
-				right: 0;
-				bottom: -2em;
-				margin: 0 auto;
-			}
+	}
+	.starting-line {
+		position: relative;
+		&::before {
+			content: "";
+			display: block;
+			position: absolute;
+			min-height: 4em;
+			border: 1px dashed $secondary;
+			z-index: 1;
+			max-width: 1px;
+			left: 0;
+			right: 0;
+			bottom: -2em;
+			margin: 0 auto;
 		}
 	}
 
@@ -190,40 +190,8 @@ section {
 		border-radius: 20em 20em 0 0;
 	}
 
-	.rounded-big-btm-right {
-		border-bottom-right-radius: 15em;
-	}
-
-	.wedding-quote {
-		position: absolute;
-		left: 0;
-		right: 0;
-		margin: 0 auto;
-		color: $secondary;
-		padding: 2rem 1rem;
-		max-width: calc(100% / 1.5);
-		backdrop-filter: blur(3px);
-		-webkit-backdrop-filter: blur(3px);
-		&::before,
-		&::after {
-			content: "";
-			display: block;
-			border: 2px solid $secondary;
-			height: 20px;
-			width: 100%;
-			position: absolute;
-			left: 0;
-		}
-
-		&::before {
-			top: 0;
-			border-bottom: 0px;
-		}
-
-		&::after {
-			bottom: 0;
-			border-top: 0px;
-		}
+	.rounded-big-btm {
+		border-radius: 0 0 15em 15em;
 	}
 
 	&#welcome {
@@ -239,18 +207,21 @@ section {
 	}
 
 	&#details {
-		.top-section {
-			background-color: $brightRed;
-			.wedding-quote {
-				top: 8em;
-			}
-		}
+		background: linear-gradient(to bottom, $brightRed 50%, transparent);
 		.bg-banner {
-			background-image: url("../Assets/BlackAttire.avif");
-			background-size: cover;
-			background-position-x: 25%;
-			.wedding-quote {
-				top: 6em;
+			height: 60vh;
+			background-position-y: bottom;
+			&.rounded-big-top{
+				background-image: url("../Assets/BlackAttire.avif");
+				background-position-x: 28%;
+				background-size: 250%;
+			}
+			&.rounded-big-btm{
+				background-image: url("../Assets/whitePink.avif");
+				background-size: 125%;
+				@media (max-height: 670px){
+					height: 78vh;
+				}
 			}
 		}
 	}
@@ -262,7 +233,7 @@ section {
 		.bg-banner {
 			background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkDMkrzhgQhS3WAv_GclDNOhKZqhlGrWv1XjOplv11pYIHkIYRAaIwyAu0tOr0J2XItFfxI5t4aPi-BR_9oY9gADoLq_DxZyU8iflZlGUE4X_UX3Axvbkvz0iaIfJyeq4ICfiNyOQ=s680-w680-h510-rw");
 			height: 100%;
-			margin-top: -15em;
+			margin-top: -18em;
 			padding-top: 20em;
 			padding-bottom: 2em;
 			background-size: cover;
@@ -341,9 +312,8 @@ section {
 							opacity: 0.8;
 						}
 
-						input,
+						input:not(input[type="checkbox"]),
 						select {
-							margin-bottom: 1rem;
 							padding: 0.5rem;
 							width: 100%;
 							background-color: $cream;

@@ -1,4 +1,6 @@
-function setLanguage(lang) {
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function applyTranslations(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[lang][key]) el.textContent = translations[lang][key];
@@ -7,16 +9,15 @@ function setLanguage(lang) {
     const key = el.getAttribute('data-i18n-placeholder');
     if (translations[lang][key]) el.placeholder = translations[lang][key];
   });
+}
 
+function setLanguage(lang) {
+  currentLang = lang;
+  applyTranslations(lang);
   document.getElementById('current-lang-label').textContent = lang.toUpperCase();
   localStorage.setItem('lang', lang);
   document.documentElement.lang = lang;
-
-  // Re-render dynamic content so it isn't stuck in the old language
-  if (typeof updateMealSummary === 'function') updateMealSummary();
-  if (typeof renderGuestNames === 'function') renderGuestNames();
 }
 
-// Load saved language immediately when this file runs
-const savedLang = localStorage.getItem('lang') || 'en';
-setLanguage(savedLang);
+// Load saved language on page load
+applyTranslations(currentLang);
