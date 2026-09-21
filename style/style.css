@@ -100,10 +100,6 @@ nav.navbar .navbar-brand {
   font-weight: 700;
   font-style: normal;
 }
-nav.navbar button.navbar-toggler {
-  border-color: #c9a24b;
-  color: #c9a24b;
-}
 nav.navbar a.nav-link {
   color: #c9a24b;
   border-bottom: 2px solid transparent;
@@ -157,26 +153,8 @@ section .bg-banner-wrapper .main-headline a.rsvp-button {
 section .bg-banner-wrapper .main-headline:last-child {
   background: linear-gradient(to top, #b10008 80%, transparent);
 }
-section .starting-line {
-  position: relative;
-}
-section .starting-line::before {
-  content: "";
-  display: block;
-  position: absolute;
-  min-height: 4em;
-  border: 1px dashed #c9a24b;
-  z-index: 1;
-  max-width: 1px;
-  left: 0;
-  right: 0;
-  bottom: -2em;
-  margin: 0 auto;
-}
-section .bg-blend-section {
-  left: 0;
-  width: 100%;
-  top: 8em;
+section {
+  /* .bg-blend-section removed (not used) */
 }
 section .rounded-big-top {
   border-radius: 20em 20em 0 0;
@@ -379,4 +357,72 @@ footer {
 }
 footer a {
   color: #c9a24b;
+}
+
+/* Modal & confirmation card styles */
+.confirmation-modal .modal-body {
+  background: transparent;
+}
+
+#confirmation-card {
+  background: #97010d;
+  color: #f7f0e4;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+#confirmation-card .top-section-banner {
+  height: 48px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+#confirmation-card .content-section {
+  padding: 1rem;
+}
+
+/* Make modal buttons align nicely */
+.confirmation-modal .btn {
+  min-width: 96px;
+}
+
+@media (max-width: 576px) {
+  #confirmation-card {
+    max-width: 100%;
+  }
+}
+/* meal list styling inside modal/card */
+.meal-list {
+  padding-left: 1rem;
+  margin: 0.25rem 0 0 0;
+}
+
+.meal-list li {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+#confirmation-card {
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(to right, #97010d, #b10008, #97010d);
+  left: -9999px;
+}
+#confirmation-card .top-section-banner {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background-image: url(../Assets/Western.avif);
+  background-size: cover;
+  background-position-y: center;
+}
+#confirmation-card .content-section {
+  padding: 30px;
+  color: #e8d9b5;
+}
+#confirmation-card .content-section hr {
+  color: #e8d9b5;
 }/*# sourceMappingURL=style.css.map */

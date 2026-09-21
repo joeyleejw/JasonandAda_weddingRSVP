@@ -19,7 +19,7 @@ const translations = {
         RSVPlocation: "Xin Cuisine Chinese Restaurant, Concorde Hotel",
 
         //rsvp form
-        formHeadline: "Join us in our joyous union",
+        formHeadline: "Save Your Seat at Our Table",
         formSubheadline: "Kindly RSVP",
         formFullname: "Full name",
         formInvitedBy: "Invited by",
@@ -52,6 +52,17 @@ const translations = {
         authorCopyright: "Author: Joey Lee @ 2026",
         contactUstext: "Contact Us",
         contactUsmale: "Jason",
-        contactUsfemale: "Ada"
+        contactUsfemale: "Ada",
+
+        // modal
+        modalTitle: "Thank You!",
+        modalParkingTitle: "Parking Information",
+        modalParkingText: "Complimentary parking is available at Concord Hotel basement car park. Please retain your ticket for validation.",
+        modalDownload: "Download",
+        modalShare: "Share",
+        modalAddCalendar: "Add to Calendar",
+
+        //confirmation card
+        confirmationConfirm: "Wedding RSVP"
     }
 }

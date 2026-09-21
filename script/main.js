@@ -1,9 +1,10 @@
-document.querySelectorAll('#navbarNav .nav-link').forEach(link => {
+const navLinks = document.querySelectorAll('nav.navbar .nav-link');
+navLinks.forEach(link => {
   link.addEventListener('click', () => {
     const navbarCollapse = document.getElementById('navbarNav');
-    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-    if (bsCollapse) {
-      bsCollapse.hide();
+    if (navbarCollapse) {
+      const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+      if (bsCollapse) bsCollapse.hide();
     }
   });
 });
