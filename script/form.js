@@ -24,7 +24,6 @@ attendingSelect.addEventListener("change", (e) => {
    regretsField.style.display = e.target.value === "no" ? "block" : "none";
 
    if (!isYes) {
-      // Clear any stale required fields left over from a previous "Yes" selection
       guestNamesContainer.innerHTML = "";
       guestsInput.value = 1;
       hasChildrenCheckbox.checked = false;
@@ -50,8 +49,6 @@ function renderGuestNames() {
    for (let i = 2; i <= count; i++) {
       const savedName = previousNames[i - 2] || "";
       const savedMeal = previousMeals[i - 2] || "";
-
-      // Look up translated guest title and replace {n}
       const guestTitle = t("formGuestTitle").replace("{n}", i);
 
       guestNamesContainer.innerHTML += `
@@ -77,25 +74,25 @@ function renderGuestNames() {
     `;
    }
 
-   applyTranslations(currentLang); // Translate data-i18n labels inside the newly injected HTML
+   applyTranslations(currentLang);
    if (typeof matchRowHeights === "function") {
       matchRowHeights();
    }
 }
 
 guestsInput.addEventListener("input", renderGuestNames);
-renderGuestNames(); // run once on load
+renderGuestNames();
 
 const phoneInput = document.getElementById("phone");
 
 phoneInput.addEventListener("input", (e) => {
-   let digits = e.target.value.replace(/\D/g, ""); // strip anything non-numeric
-   digits = digits.substring(0, 11); // 60 + 9-digit number = 11 digits max
+   let digits = e.target.value.replace(/\D/g, "");
+   digits = digits.substring(0, 11);
 
    let formatted = "";
-   if (digits.length > 0) formatted += digits.substring(0, 4); // "6012"
-   if (digits.length > 4) formatted += "-" + digits.substring(4, 7); // "-242"
-   if (digits.length > 7) formatted += " " + digits.substring(7, 11); // " 8188"
+   if (digits.length > 0) formatted += digits.substring(0, 4);
+   if (digits.length > 4) formatted += "-" + digits.substring(4, 7);
+   if (digits.length > 7) formatted += " " + digits.substring(7, 11);
 
    e.target.value = formatted;
 });
@@ -104,16 +101,13 @@ const phoneError = document.getElementById("phone-error");
 
 function isValidPhone() {
    const digits = phoneInput.value.replace(/\D/g, "");
-   // Malaysian mobile: 60 + 9 digits (11 total) or 60 + 10 digits for 011-prefix numbers (12 total)
    return digits.length === 11 || digits.length === 12;
 }
 
-// Clear the error as soon as they fix it, so it doesn't stay stuck red
 phoneInput.addEventListener("input", () => {
    if (isValidPhone()) phoneError.style.display = "none";
 });
 
-// Build the per-guest meal string for submission
 function buildMealsString(guestCount) {
    const meals = [];
    const normalizeMeal = (value) => (!value || value === "Select" ? "None" : value);
@@ -132,7 +126,6 @@ function buildMealsString(guestCount) {
    return meals.join(", ");
 }
 
-// "Bringing children?" checkbox — shows/hides the whole children block
 hasChildrenCheckbox.addEventListener("change", (e) => {
    const checked = e.target.checked;
    childrenWrapper.style.display = checked ? "block" : "none";
@@ -150,7 +143,6 @@ hasChildrenCheckbox.addEventListener("change", (e) => {
    }
 });
 
-// Initial state on load:
 childrenInput.disabled = true;
 renderBabyChairOptions();
 
@@ -166,7 +158,6 @@ babychairSelect.addEventListener("change", (e) => {
    }
 });
 
-// Baby chair question only when children > 0
 function renderBabyChairOptions() {
    const kids = parseInt(childrenInput.value) || 0;
    const previousValue = babychairSelect.value;
@@ -195,7 +186,6 @@ function renderBabyChairOptions() {
 
 childrenInput.addEventListener("input", renderBabyChairOptions);
 
-// Single submit handler
 document.getElementById("rsvp-form").addEventListener("submit", (e) => {
    const nameValue = document.getElementById("name").value.trim();
    const invitedByValue = document.getElementById("invitedBy").value;
@@ -266,7 +256,6 @@ document.getElementById("rsvp-form").addEventListener("submit", (e) => {
 
    document.getElementById("message-hidden").value = attending === "no" ? document.getElementById("message").value : "";
 
-   // Snapshot for the confirmation modal
    lastSubmission = {
       name: document.getElementById("name").value,
       attending: attending,
@@ -314,13 +303,6 @@ function handleSubmitResponse() {
 function t(key) {
    const raw = (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key;
    return currentLang === "zh" ? formatZH(raw) : raw;
-}
-
-// Utility to strip HTML tags (like <span class="zh-text">) for WhatsApp sharing
-function stripHTML(htmlString) {
-   const tmp = document.createElement("DIV");
-   tmp.innerHTML = htmlString;
-   return tmp.textContent || tmp.innerText || "";
 }
 
 function translateMealValue(rawValue) {
@@ -417,8 +399,7 @@ function buildConfirmationModal(data) {
    }
 
    const displayName = currentLang === "zh" ? formatZH(data.name) : data.name;
-
-   const thankYouHeading = `<p class="mb-2 thank-you-summary">${displayName}, ${t("thankingRSVP")}</p>`;
+   const thankYouHeading = `<h6 class="mb-2">${displayName}, ${t("thankingRSVP")}</h6>`;
 
    summaryContainer.innerHTML = `${thankYouHeading}${modalRowsHtml}`;
    cardDetails.innerHTML = `${thankYouHeading}${cardRowsHtml}`;
@@ -435,24 +416,21 @@ function buildConfirmationModal(data) {
 		`;
    }
 
+   // Plain text summary fallback for copy/share
+   const plainSummary = Array.from(document.querySelectorAll("#modal-summary-container .summary-row"))
+      .map((row) => {
+         const label = row.querySelector(".summary-label")?.innerText.trim();
+         const value =
+            row.querySelector(".summary-value")?.innerText.trim() ||
+            Array.from(row.querySelectorAll(".meal-badge"))
+               .map((b) => b.innerText)
+               .join(", ");
+         return `${label}: ${value}`;
+      })
+      .join("\n");
+
    document.getElementById("download-response-btn").onclick = downloadCardAsImage;
-
-   // WhatsApp Share button with clean text (HTML tags stripped)
-   document.getElementById("share-response-btn").onclick = () => {
-      const cleanName = stripHTML(data.name);
-      const cleanAttending = data.attending === "yes" ? stripHTML(t("formAttendyes")) : stripHTML(t("formAttendno"));
-
-      let messageText = `🎉 *Wedding RSVP Confirmation*\n\n` + `*Name:* ${cleanName}\n` + `*Status:* ${cleanAttending}\n`;
-
-      if (data.attending === "yes") {
-         messageText += `*Guests:* ${data.guests}\n`;
-      }
-
-      messageText += `\nLooking forward to celebrating with Jason & Ada!`;
-
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(messageText)}`;
-      window.open(whatsappUrl, "_blank");
-   };
+   document.getElementById("share-response-btn").onclick = () => shareSummary(plainSummary);
 }
 
 function downloadCardAsImage() {
@@ -475,17 +453,66 @@ function downloadCardAsImage() {
    });
 }
 
+// Share confirmation card snapshot or fallback to text
+function shareSummary(summary) {
+   const card = document.getElementById("confirmation-card");
+
+   html2canvas(card, {
+      backgroundColor: null,
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      onclone: (clonedDoc) => {
+         const clonedCard = clonedDoc.getElementById("confirmation-card");
+         clonedCard.style.position = "static";
+         clonedCard.style.left = "0";
+      },
+   }).then((canvas) =>
+      canvas.toBlob(
+         (blob) => {
+            const file = new File([blob], "RSVP-Confirmation.png", { type: "image/png" });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+               navigator.share({ files: [file], title: "Jason & Ada's Wedding RSVP", text: summary });
+            } else if (navigator.share) {
+               navigator.share({ title: "Jason & Ada's Wedding RSVP", text: summary });
+            } else {
+               navigator.clipboard.writeText(summary);
+               alert("Copied to clipboard — you can now paste and share it.");
+            }
+         },
+         "image/png",
+         1.0,
+      ),
+   );
+}
+
 // Function to generate and download .ics file
 function downloadICSFile() {
    const event = {
       title: "Jason & Ada's Wedding",
       description: "Join us in celebrating the wedding of Jason and Ada!",
-      location: "Xin Cuisine Chinese Restaurant, Concorde Hotel",
-      startDate: "20261010T110000",
-      endDate: "20261010T160000",
+      location: "Your Wedding Venue Location Here",
+      startDate: "20261212T190000",
+      endDate: "20261212T220000",
    };
 
-   const icsData = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Jason and Ada Wedding RSVP//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT", `SUMMARY:${event.title}`, `DESCRIPTION:${event.description}`, `LOCATION:${event.location}`, `DTSTART:${event.startDate}`, `DTEND:${event.endDate}`, "STATUS:CONFIRMED", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+   const icsData = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Jason and Ada Wedding RSVP//EN",
+      "CALSCALE:GREGORIAN",
+      "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      `SUMMARY:${event.title}`,
+      `DESCRIPTION:${event.description}`,
+      `LOCATION:${event.location}`,
+      `DTSTART:${event.startDate}`,
+      `DTEND:${event.endDate}`,
+      "STATUS:CONFIRMED",
+      "END:VEVENT",
+      "END:VCALENDAR"
+   ].join("\r\n");
 
    const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
    const link = document.createElement("a");
@@ -496,7 +523,7 @@ function downloadICSFile() {
    document.body.removeChild(link);
 }
 
-// Attach ICS download listener to calendar button on DOM load
+// Attach ICS download listener on DOM load
 document.addEventListener("DOMContentLoaded", () => {
    const calendarBtn = document.getElementById("add-calendar-btn");
    if (calendarBtn) {

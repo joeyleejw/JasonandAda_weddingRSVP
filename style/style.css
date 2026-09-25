@@ -397,7 +397,7 @@ footer a {
 }
 .confirmation-modal .modal-header::after {
   content: "";
-  background: linear-gradient(to right, transparent, #c9a24b, transparent);
+  background: #c9a24b;
   width: 100%;
   height: 1px;
   position: absolute;
@@ -498,7 +498,7 @@ footer a {
 }
 .confirmation-modal #confirmation-card .top-section::after {
   content: "";
-  background: linear-gradient(to right, transparent, #c9a24b, transparent);
+  background: #c9a24b;
   width: 100%;
   height: 1px;
   position: absolute;
