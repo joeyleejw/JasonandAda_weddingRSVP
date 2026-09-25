@@ -406,7 +406,7 @@ footer a {
   right: 0;
   bottom: 0;
 }
-.confirmation-modal a {
+.confirmation-modal a, .confirmation-modal a:not([href]):not([class]), .confirmation-modal a:not([href]):not([class]):hover {
   background: #c9a24b;
   width: 100%;
   border-radius: 0.5rem;
@@ -416,7 +416,7 @@ footer a {
   color: #000;
   text-align: center;
 }
-.confirmation-modal a:active {
+.confirmation-modal a:active, .confirmation-modal a:not([href]):not([class]):active, .confirmation-modal a:not([href]):not([class]):hover:active {
   background: transparent;
   color: #c9a24b;
 }

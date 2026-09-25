@@ -155,7 +155,7 @@ nav.navbar {
    }
 }
 
-button {
+button{
    @include rsvpButton;
 }
 section[id] {
@@ -438,7 +438,7 @@ footer {
       }
    }
 
-   a {
+   a, a:not([href]):not([class]), a:not([href]):not([class]):hover{
       @include rsvpButton;
    }
 
