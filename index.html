@@ -23,7 +23,7 @@
         <!-- navigation bar -->
         <nav class="navbar sticky-top">
             <div class="container justify-content-between">
-                <span class="welcome-text">Welcome</span>
+                <span data-i18n="rsvpMain"></span>
                 <span class="navbar-brand">囍</span>
                 <a href="" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -37,30 +37,35 @@
         </nav>
 
         <section id="welcome" class="z-2 position-relative">
-            <div class="bg-banner-wrapper bg-banner">
-                <div class="main-headline py-5 px-4">
-                    <div class="container text-center">
-                        <h2 class="mb-1" data-i18n="welcomeHeadline"></h2>
-                        <p data-i18n="welcomeSubheadline"></p>
-                    </div>
+            <div class="bg-main-section">
+                <div class="bg-banner-wrapper bg-banner fade-in-section">
+                    <div class="main-headline py-5 px-4">
+                        <div class="container text-center">
+                            <h2 class="mb-1 fade-in-section" data-i18n="welcomeHeadline"></h2>
+                            <p class="fade-in-section" data-i18n="welcomeSubheadline"></p>
+                        </div>
 
-                </div>
-                <div class="main-headline py-5">
-                    <div class="container text-center">
-                        <h1 class="display-1" data-i18n="lovelyCouple"></h1>
-                        <a href="#rsvp" class="rsvp-button">RSVP <i class="bi bi-arrow-down"></i></a>
-                        <p><small data-i18n="RSVPbefore"></small></p>
+                    </div>
+                    <div class="main-headline py-5">
+                        <div class="container text-center">
+                            <h1 class="display-1 fade-in-section" data-i18n="lovelyCouple"></h1>
+                            <a href="#rsvp" class="rsvp-button fade-in-section"><span data-i18n="rsvpButton"></span> <i
+                                    class="bi bi-arrow-down"></i></a>
+                            <p class="fade-in-section"><small data-i18n="RSVPbefore"></small></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         <section id="details" class="position-relative z-1">
-            <div class="bg-banner-wrapper bg-banner rounded-big-top"></div>
-            <div class="bg-banner-wrapper bg-banner rounded-big-btm"></div>
+            <div class="fade-in-section">
+                <div class="bg-banner-wrapper bg-banner rounded-big-top"></div>
+                <div class="bg-banner-wrapper bg-banner rounded-big-btm"></div>
+            </div>
         </section>
         <section id="rsvp">
             <div class="bg-banner-wrapper bg-banner bg-overlay position-relative">
-                <div class="container text-center mb-4" id="countdownText">
+                <div class="container text-center mb-4 fade-in-section" id="countdownText">
                     <h2 class="mb-0" data-i18n="RSVPheadline"></h2>
                     <p data-i18n="RSVPsubheadline" class="d-none"></p>
                 </div>
@@ -68,26 +73,30 @@
                     <div class="row">
                         <div class="col-12 col-sm-4 mb-4 mb-sm-0">
                             <div id="countdown">
-                                <div><span id="days">0</span><label data-i18n="countdownDays"></label></div>
-                                <div><span id="hours">0</span><label data-i18n="countdownHours"></label></div>
-                                <div><span id="minutes">0</span><label data-i18n="countdownMinutes"></label></div>
-                                <div><span id="seconds">0</span><label data-i18n="countdownSeconds"></label></div>
+                                <div class="fade-in-section"><span id="days">0</span><label
+                                        data-i18n="countdownDays"></label></div>
+                                <div class="fade-in-section"><span id="hours">0</span><label
+                                        data-i18n="countdownHours"></label></div>
+                                <div class="fade-in-section"><span id="minutes">0</span><label
+                                        data-i18n="countdownMinutes"></label></div>
+                                <div class="fade-in-section"><span id="seconds">0</span><label
+                                        data-i18n="countdownSeconds"></label></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-8">
                             <div class="position-relative playground">
-                                <div class="date">
+                                <div class="date fade-in-section">
                                     <i class="bi bi-calendar-heart"></i> <span data-i18n="RSVPdate"></span>
                                 </div>
-                                <div class="reception-time">
+                                <div class="reception-time fade-in-section">
                                     <img loading="lazy" src="Assets/wine-glasses.avif" alt="Reception"> <span
                                         data-i18n="RSVPreception"></span>
                                 </div>
-                                <div class="dinner-time">
+                                <div class="dinner-time fade-in-section">
                                     <img loading="lazy" src="Assets/food-and-restaurant.avif" alt="Dinner"> <span
                                         data-i18n="RSVPdinner"></span>
                                 </div>
-                                <div class="location">
+                                <div class="location fade-in-section">
                                     <i class="bi bi-geo-alt"></i> <span data-i18n="RSVPlocation"></span>
                                 </div>
                             </div>
@@ -96,13 +105,14 @@
                 </div>
                 <div class="form-section container p-4">
                     <div class="container text-center mb-3">
-                        <h2 class="mb-2" data-i18n="formHeadline"></h2>
-                        <p><span data-i18n="formSubheadline"></span> <span data-i18n="RSVPbefore"></span></p>
+                        <h2 class="mb-2 fade-in-section" data-i18n="formHeadline"></h2>
+                        <p class="fade-in-section"><span data-i18n="formSubheadline"></span><span
+                                data-i18n="RSVPbefore"></span></p>
                     </div>
                     <!-- form -->
                     <iframe name="hidden-iframe" style="display:none;"></iframe>
 
-                    <form id="rsvp-form" target="hidden-iframe" method="POST"
+                    <form id="rsvp-form" class="fade-in-section" novalidate target="hidden-iframe" method="POST"
                         action="https://script.google.com/macros/s/AKfycbx7C51DdhvXx3W1keMZEEunrG2RslZSlHzDjxBO5HvA726pbh-FK43nf73U8OSLzKTw3w/exec">
 
                         <div class="row justify-content-between mb-3">
@@ -134,15 +144,14 @@
                                     <label data-i18n="formPhoneNumber"></label>
                                     <div class="input-phone-number d-flex align-items-center">
                                         <span class="phone-prefix">+</span>
-                                        <input type="tel" id="phone" placeholder="6012-345 6789" minlength="14"
-                                            required>
+                                        <input type="tel" id="phone" placeholder="6012-345 6789">
                                     </div>
                                     <p id="phone-error" class="text-danger" style="display:none"
                                         data-i18n="formPhoneError"></p>
                                 </div>
                                 <div class="col-6 mb-2">
                                     <label data-i18n="formMealLabel"></label>
-                                    <select class="dietary-select" id="dietary-select-1" data-guest="1" required>
+                                    <select class="dietary-select" id="dietary-select-1" data-guest="1">
                                         <option value="Select" data-i18n="formMealSelect"></option>
                                         <option value="Non-Halal" data-i18n="formMealNonHalal"></option>
                                         <option value="Halal" data-i18n="formMealHalal"></option>
@@ -151,7 +160,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label data-i18n="formGuestsNumber"></label>
-                                    <input type="number" id="guests" min="1" value="1" class="mb-0" required>
+                                    <input type="number" id="guests" min="1" value="1" class="mb-0">
                                 </div>
 
                                 <div class="col-12">
@@ -191,13 +200,14 @@
                             <div class="d-flex flex-column">
                                 <label data-i18n="formSendUsBlessingTitle"></label>
                                 <small class="form-disclaimer" data-i18n="formSendUsBlessingSubtitle"></small>
-                                <textarea id="message"
+                                <textarea id="message" data-i18n-placeholder="placeholderMessage"
                                     placeholder="Wishing you a lifetime of love and happiness..."></textarea>
                             </div>
                         </div>
 
                         <!-- HIDDEN FIELDS -->
                         <input type="hidden" name="name" id="name-hidden">
+                        <input type="hidden" name="invitedBy" id="invitedBy-hidden">
                         <input type="hidden" name="phone" id="phone-hidden">
                         <input type="hidden" name="attending" id="attending-hidden">
                         <input type="hidden" name="guests" id="guests-hidden">
@@ -207,7 +217,7 @@
                         <input type="hidden" name="meals" id="meals-hidden">
                         <input type="hidden" name="message" id="message-hidden">
 
-                        <button type="submit" data-i18n="button-submit">Submit RSVP</button>
+                        <button type="submit" data-i18n="buttonSubmit"></button>
                     </form>
                 </div>
             </div>
@@ -221,8 +231,10 @@
                         <small><b data-i18n="contactUstext"></b></small>
                         <small>
                             <ul>
-                                <li><span data-i18n="contactUsmale"></span>: <a href="tel:60129858990">+60 12-985 8990</a></li>
-                                <li><span data-i18n="contactUsfemale"></span>: <a href="tel:60102720104">+60 10-272 0104</a></li>
+                                <li><span data-i18n="contactUsmale"></span>: <a href="tel:60129858990">+60 12-985
+                                        8990</a></li>
+                                <li><span data-i18n="contactUsfemale"></span>: <a href="tel:60102720104">+60 10-272
+                                        0104</a></li>
                             </ul>
                         </small>
                     </div>
@@ -234,38 +246,48 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content confirmation-modal p-3">
                 <div class="modal-header border-0">
+                    <!-- Thank You -->
                     <h5 class="modal-title" data-i18n="modalTitle"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-5 d-flex justify-content-center align-items-start">
-                            <!-- confirmation card preview (used by html2canvas as well) -->
-                            <div id="confirmation-card" class="w-100">
-                                <div class="top-section-banner"></div>
-                                <div class="content-section p-3">
-                                    <p class="mb-0"><small data-i18n="confirmationConfirm"></small></p>
-                                    <h1 data-i18n="lovelyCouple"></h1>
-                                    <p data-i18n="RSVPdate"></p>
-                                    <hr>
-                                    <div id="card-details"></div>
-                                </div>
+                    <div id="modal-summary-container"></div>
+
+                    <div id="modal-parking-info">
+                        <div class="d-flex">
+                            <div>
+                                <h6 data-i18n="modalParkingTitle"></h6>
+                                <ol class="parking-steps">
+                                    <li data-i18n="modalParkingStep1"></li>
+                                    <li data-i18n="modalParkingStep2"></li>
+                                    <li data-i18n="modalParkingStep3"></li>
+                                </ol>
+                                <p class="mt-2"><small data-i18n="modalParkingNote"></small></p>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <p id="modal-summary-text" style="white-space: pre-line;" class="mb-3"></p>
+                    </div>
 
-                            <h6 data-i18n="modalParkingTitle"></h6>
-                            <p data-i18n="modalParkingText"></p>
+                    <div class="d-flex gap-2 mt-3 flex-wrap">
+                        <button id="download-response-btn" data-i18n="modalDownload"></button>
+                        <button id="share-response-btn" data-i18n="modalShare"></button>
+                        <a id="add-calendar-btn" target="_blank" data-i18n="modalAddCalendar"></a>
+                    </div>
 
-                            <div class="d-flex gap-2 mt-3 flex-wrap">
-                                <button id="download-response-btn" class="btn btn-outline-secondary btn-sm"
-                                    data-i18n="modalDownload"></button>
-                                <button id="share-response-btn" class="btn btn-outline-secondary btn-sm"
-                                    data-i18n="modalShare"></button>
-                                <a id="add-calendar-btn" class="btn btn-outline-secondary btn-sm" target="_blank"
-                                    data-i18n="modalAddCalendar"></a>
+                    <!-- confirmation card -->
+                    <div id="confirmation-card" class="w-100">
+                        <div class="content-section px-3">
+                            <div class="top-section d-flex gap-3 align-items-center">
+                                <div class="lovely-couple-photo-wrapper">
+                                    <img src="Assets/Western.avif" alt="Couple Photo" />
+                                </div>
+                                <div>
+                                    <p class="mb-0"><small data-i18n="confirmationConfirm"></small></p>
+                                    <h1 data-i18n="lovelyCouple"></h1>
+                                    <p data-i18n="confirmationDateTime"></p>
+                                </div>
                             </div>
+                            <div id="card-details"></div>
                         </div>
                     </div>
                 </div>
@@ -275,12 +297,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         type="text/javascript"></script>
-    <script src="script/translatation.js" type="text/javascript"></script>
+    <script src="script/main.js" type="text/javascript"></script>
+    <script src="script/translation.js" type="text/javascript"></script>
     <script src="script/language.js" type="text/javascript"></script>
     <script src="script/countdown.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script/form.js" type="text/javascript"></script>
-    <script src="script/main.js" type="text/javascript"></script>
 </body>
 
 </html>

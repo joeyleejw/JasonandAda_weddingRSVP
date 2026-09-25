@@ -1,30 +1,34 @@
 @font-face {
   font-family: "Cambria";
-  src: url("font/woff/Cambria.woff2") format("woff2"), url("path.woff") format("woff");
+  src: url("font/woff/Cambria.woff2") format("woff2"), url("font/woff/Cambria.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-007F, U+00A0-00FF, U+0100-017F;
 }
 @font-face {
   font-family: "Cambria Italic";
-  src: url("font/woff/CAMBRIAI.woff2") format("woff2"), url("path.woff") format("woff");
+  src: url("font/woff/CAMBRIAI.woff2") format("woff2"), url("font/woff/CAMBRIAI.woff") format("woff");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
+  unicode-range: U+0000-007F, U+00A0-00FF, U+0100-017F;
 }
 @font-face {
   font-family: "Cambria Bold";
-  src: url("font/woff/cambriab.woff2") format("woff2"), url("path.woff") format("woff");
+  src: url("font/woff/cambriab.woff2") format("woff2"), url("font/woff/cambriab.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-007F, U+00A0-00FF, U+0100-017F;
 }
 @font-face {
-  font-family: "Bo Dang Xing Kai";
-  src: url("font/woff/bodang-xingkai.woff2") format("woff2"), url("path.woff") format("woff");
+  font-family: "Hanyi Senty Pine";
+  src: url("font/woff/HanyiSentyPine.woff2") format("woff2"), url("font/woff/HanyiSentyPine.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+3000-303F, U+FF00-FFEF;
 }
 #mobile-only-message {
   display: none;
@@ -53,7 +57,7 @@
   }
 }
 * {
-  font-family: "Cambria", sans-serif;
+  font-family: "Cambria", "Hanyi Senty Pine", serif, sans-serif;
   font-weight: normal;
   font-style: normal;
   transition: 0.3s ease-in-out;
@@ -68,7 +72,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Cambria", sans-serif;
+  font-family: "Cambria", "Hanyi Senty Pine", serif, sans-serif;
   font-weight: 900;
   font-style: normal;
   margin-bottom: 0;
@@ -90,15 +94,15 @@ a {
 nav.navbar {
   background: linear-gradient(to right, #97010d, #b10008, #97010d);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-nav.navbar span.welcome-text {
   color: #c9a24b;
 }
 nav.navbar .navbar-brand {
-  color: #e8d9b5;
-  font-family: "Cambria", sans-serif;
+  color: #c9a24b;
+  font-family: "Cambria", "Hanyi Senty Pine", serif, sans-serif;
   font-weight: 700;
   font-style: normal;
+  margin-right: 0;
+  font-size: 2em;
 }
 nav.navbar a.nav-link {
   color: #c9a24b;
@@ -113,6 +117,21 @@ nav.navbar a.nav-link.active {
   border-bottom: 2px solid #e8d9b5;
 }
 
+button {
+  background: #c9a24b;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border: 2px solid #c9a24b;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+}
+button:active {
+  background: transparent;
+  color: #c9a24b;
+}
+
 section[id] {
   scroll-margin-top: 80px;
 }
@@ -120,7 +139,10 @@ section[id] {
 section p {
   color: #e8d9b5;
 }
-section .bg-banner-wrapper {
+section .bg-main-section {
+  background: linear-gradient(to right, #97010d, #b10008, #97010d);
+}
+section .bg-main-section .bg-banner-wrapper {
   background-size: 140%;
   background-position-x: center;
   background-position-y: top;
@@ -128,17 +150,17 @@ section .bg-banner-wrapper {
   position: relative;
   height: 90vh;
 }
-section .bg-banner-wrapper .main-headline {
+section .bg-main-section .bg-banner-wrapper .main-headline {
   background: linear-gradient(to bottom, #b10008 80%, transparent);
   color: #c9a24b;
   width: 100%;
 }
-section .bg-banner-wrapper .main-headline .display-1 {
+section .bg-main-section .bg-banner-wrapper .main-headline .display-1 {
   font-weight: revert;
   padding: 0.5rem 0;
   text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
-section .bg-banner-wrapper .main-headline a.rsvp-button {
+section .bg-main-section .bg-banner-wrapper .main-headline a.rsvp-button {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: 2px solid #c9a24b;
@@ -150,7 +172,7 @@ section .bg-banner-wrapper .main-headline a.rsvp-button {
   margin: 1rem 0;
   margin: 0.5rem 0;
 }
-section .bg-banner-wrapper .main-headline:last-child {
+section .bg-main-section .bg-banner-wrapper .main-headline:last-child {
   background: linear-gradient(to top, #b10008 80%, transparent);
 }
 section {
@@ -186,6 +208,7 @@ section#details .bg-banner.rounded-big-top {
 section#details .bg-banner.rounded-big-btm {
   background-image: url("../Assets/whitePink.avif");
   background-size: 125%;
+  background-position-x: center;
 }
 @media (max-height: 670px) {
   section#details .bg-banner.rounded-big-btm {
@@ -269,6 +292,9 @@ section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form .input-phone-num
 section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form .input-phone-number input {
   margin-bottom: 0px;
 }
+section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form textarea {
+  padding: 0.5rem 1rem;
+}
 section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form hr {
   color: #c9a24b;
   opacity: 0.8;
@@ -293,6 +319,8 @@ section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form button {
   padding: 0.5rem;
   border: 2px solid #c9a24b;
   font-weight: 400;
+  color: #000;
+  text-align: center;
 }
 section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form button:active {
   background: transparent;
@@ -359,70 +387,240 @@ footer a {
   color: #c9a24b;
 }
 
-/* Modal & confirmation card styles */
-.confirmation-modal .modal-body {
-  background: transparent;
-}
-
-#confirmation-card {
-  background: #97010d;
-  color: #f7f0e4;
-  width: 100%;
-  max-width: 380px;
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-
-#confirmation-card .top-section-banner {
-  height: 48px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-}
-
-#confirmation-card .content-section {
-  padding: 1rem;
-}
-
-/* Make modal buttons align nicely */
-.confirmation-modal .btn {
-  min-width: 96px;
-}
-
-@media (max-width: 576px) {
-  #confirmation-card {
-    max-width: 100%;
-  }
-}
-/* meal list styling inside modal/card */
-.meal-list {
-  padding-left: 1rem;
-  margin: 0.25rem 0 0 0;
-}
-
-.meal-list li {
-  margin: 0.25rem 0;
-  font-size: 0.95rem;
-}
-
-#confirmation-card {
-  position: absolute;
-  width: 100%;
+.confirmation-modal {
   background: linear-gradient(to right, #97010d, #b10008, #97010d);
-  left: -9999px;
+  color: #e8d9b5;
+  font-size: 14px;
 }
-#confirmation-card .top-section-banner {
+.confirmation-modal .modal-header {
+  position: relative;
+}
+.confirmation-modal .modal-header::after {
+  content: "";
+  background: linear-gradient(to right, transparent, #c9a24b, transparent);
   width: 100%;
-  height: 300px;
+  height: 1px;
+  position: absolute;
+  opacity: 0.8;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.confirmation-modal a {
+  background: #c9a24b;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border: 2px solid #c9a24b;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+}
+.confirmation-modal a:active {
+  background: transparent;
+  color: #c9a24b;
+}
+.confirmation-modal button,
+.confirmation-modal a {
+  width: unset !important;
+}
+.confirmation-modal .summary-row {
+  border-bottom: 0.3px solid rgba(201, 162, 75, 0.4784313725);
+}
+.confirmation-modal .summary-row span.meal-badge {
+  border: 0.6px solid #e8d9b5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  color: #e8d9b5;
+  font-size: 12px;
+  display: inline-block;
+}
+.confirmation-modal #modal-parking-info {
+  margin-top: 1rem;
+}
+.confirmation-modal #modal-parking-info h6 {
+  margin-bottom: 0.75rem;
+}
+.confirmation-modal #modal-parking-info .parking-steps {
+  list-style: none;
+  counter-reset: parking-step;
+  padding-left: 0;
+  margin: 0;
+}
+.confirmation-modal #modal-parking-info .parking-steps li {
+  counter-increment: parking-step;
+  position: relative;
+  padding-left: 2.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.45;
+  color: #e8d9b5;
+}
+.confirmation-modal #modal-parking-info .parking-steps li::before {
+  content: counter(parking-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #c9a24b;
+  border-radius: 50%;
+  color: #c9a24b;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.confirmation-modal #modal-parking-info .parking-steps li:last-child {
+  margin-bottom: 0;
+}
+.confirmation-modal #modal-parking-info .parking-note {
+  margin-top: 0.85rem;
+  padding-left: 0.75em;
+  border-left: 1.5px solid #c9a24b;
+  font-size: 0.8rem;
+  font-style: italic;
+  opacity: 0.75;
+}
+.confirmation-modal #confirmation-card {
+  position: absolute;
+  top: 0px;
+  left: -9999px;
+  border-radius: 8px;
+  padding: 20px 10px;
+  background: linear-gradient(to right, #97010d, #b10008, #97010d);
+  border: 2px solid #c9a24b;
+}
+.confirmation-modal #confirmation-card .top-section {
+  color: #c9a24b;
+  position: relative;
+  padding-bottom: 1rem;
+}
+.confirmation-modal #confirmation-card .top-section::after {
+  content: "";
+  background: linear-gradient(to right, transparent, #c9a24b, transparent);
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  opacity: 0.8;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.confirmation-modal #confirmation-card .top-section .lovely-couple-photo-wrapper {
+  aspect-ratio: 1/1;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 2px solid #c9a24b;
   overflow: hidden;
-  background-image: url(../Assets/Western.avif);
-  background-size: cover;
-  background-position-y: center;
+  position: relative;
+  flex-shrink: 0;
 }
-#confirmation-card .content-section {
-  padding: 30px;
+.confirmation-modal #confirmation-card .top-section .lovely-couple-photo-wrapper img {
+  width: 200%;
+  height: auto;
+  max-width: none;
+  position: absolute;
+  top: -75%;
+  left: -60%;
+  display: block;
+}
+.confirmation-modal #confirmation-card .top-section h1 {
   color: #e8d9b5;
 }
-#confirmation-card .content-section hr {
-  color: #e8d9b5;
-}/*# sourceMappingURL=style.css.map */
+.confirmation-modal #confirmation-card #card-details {
+  padding-top: 1rem;
+  font-size: 14px;
+}
+.confirmation-modal #confirmation-card #card-details span.meal-badge {
+  font-size: 12px;
+}
+.confirmation-modal #confirmation-card #card-details .msg-answer-section {
+  border-left: 1.5px solid #c9a24b;
+  padding-left: 1em;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+html[lang=zh] * {
+  vertical-align: middle;
+}
+html[lang=zh] h1 {
+  line-height: 0.8;
+}
+html[lang=zh] h1 .zh-text {
+  font-size: calc(3rem + 4.5vw);
+}
+html[lang=zh] h2 .zh-text {
+  line-height: 0.8;
+  font-size: calc(3rem + 0.9vw);
+}
+html[lang=zh] p .zh-text,
+html[lang=zh] label .zh-text,
+html[lang=zh] span .zh-text,
+html[lang=zh] a .zh-text,
+html[lang=zh] button .zh-text,
+html[lang=zh] input .zh-text {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+html[lang=zh] select {
+  font-size: 1.5rem;
+  padding: 0.3rem 0.5rem !important;
+}
+html[lang=zh] select#babychair option[value="0"] {
+  font-size: 1.5rem !important;
+}
+html[lang=zh] select#babychair option:not([value="0"]) {
+  font-size: 1rem !important;
+}
+html[lang=zh] small .zh-text {
+  font-size: 1.5em;
+}
+html[lang=zh] textarea {
+  font-size: 1.25rem;
+}
+html[lang=zh] .confirmation-modal h5 .zh-text {
+  font-size: 2rem;
+}
+html[lang=zh] .confirmation-modal h6 .zh-text {
+  font-size: 1.5rem;
+}
+html[lang=zh] .confirmation-modal span .zh-text {
+  font-size: 1.3rem;
+}
+html[lang=zh] .confirmation-modal #modal-parking-info .parking-steps li {
+  line-height: 1.2;
+}
+html[lang=zh] .confirmation-modal #modal-parking-info .parking-steps li .zh-text {
+  font-size: 1.2rem;
+}
+html[lang=zh] .confirmation-modal button,
+html[lang=zh] .confirmation-modal a {
+  padding: 0.25rem;
+}
+html[lang=zh] .confirmation-modal button .zh-text,
+html[lang=zh] .confirmation-modal a .zh-text {
+  font-size: 1.4rem;
+}
+html[lang=zh] #confirmation-card h1 .zh-text {
+  font-size: 1.5em;
+}
+html[lang=zh] #confirmation-card p .zh-text {
+  font-size: 1.5rem;
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.2s;
+  will-change: opacity, transform;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*# sourceMappingURL=style.css.map */
