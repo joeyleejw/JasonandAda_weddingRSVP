@@ -114,8 +114,6 @@ phoneInput.addEventListener("input", () => {
 });
 
 // Build the per-guest meal string for submission
-// NOTE: this stores the raw option *value* (e.g. "Non-Halal"), not translated text —
-// translation happens later, at display time, via translateMealValue()
 function buildMealsString(guestCount) {
    const meals = [];
    const normalizeMeal = (value) => (!value || value === "Select" ? "None" : value);
@@ -141,9 +139,8 @@ hasChildrenCheckbox.addEventListener("change", (e) => {
 
    if (checked) {
       childrenInput.disabled = false;
-      // Only set to 1 when the field was previously unset or 0
       if (!childrenInput.value || parseInt(childrenInput.value, 10) === 0) childrenInput.value = 1;
-      renderBabyChairOptions(); // was: toggleBabyChair()
+      renderBabyChairOptions();
    } else {
       childrenInput.value = 0;
       childrenInput.disabled = true;
@@ -155,7 +152,7 @@ hasChildrenCheckbox.addEventListener("change", (e) => {
 
 // Initial state on load:
 childrenInput.disabled = true;
-renderBabyChairOptions(); // was: toggleBabyChair()
+renderBabyChairOptions();
 
 babychairSelect.addEventListener("change", (e) => {
    if (currentLang === "zh") {
@@ -164,7 +161,6 @@ babychairSelect.addEventListener("change", (e) => {
       e.target.style.fontSize = "";
    }
 
-   // Recalculate row height right after font size change
    if (typeof matchRowHeights === "function") {
       setTimeout(matchRowHeights, 10);
    }
@@ -175,10 +171,8 @@ function renderBabyChairOptions() {
    const kids = parseInt(childrenInput.value) || 0;
    const previousValue = babychairSelect.value;
 
-   // Render option "0" with data-i18n attribute for translation
    babychairSelect.innerHTML = `<option value="0" data-i18n="formBabyChairNo">${t("formBabyChairNo")}</option>`;
 
-   // Render numeric options without i18n attributes so they stay plain numbers
    for (let i = 1; i <= kids; i++) {
       babychairSelect.innerHTML += `<option value="${i}">${i}</option>`;
    }
@@ -289,7 +283,6 @@ document.getElementById("rsvp-form").addEventListener("submit", (e) => {
       message: attending === "no" ? document.getElementById("message").value : "",
    };
 
-   // Inside the submit event listener in form.js:
    const submitBtn = e.target.querySelector('button[type="submit"]');
    submitBtn.disabled = true;
    submitBtn.innerHTML = t("buttonSubmitting");
@@ -315,24 +308,21 @@ function handleSubmitResponse() {
       guestNamesContainer.innerHTML = "";
       childrenInput.disabled = true;
       formSubmitted = false;
-
-      const calendarBtn = document.getElementById("add-calendar-btn");
-      if (calendarBtn) {
-         calendarBtn.href = buildCalendarLink();
-         calendarBtn.target = "_blank"; // Opens calendar link in a new tab
-      }
    }
 }
 
-// Looks up a translation key for the currently selected language, falling back to English,
-// then to the key itself so a missing translation never renders as "undefined".
 function t(key) {
    const raw = (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key;
-   // Wrap Chinese text with .zh-text when Chinese is active
    return currentLang === "zh" ? formatZH(raw) : raw;
 }
 
-// Translates a raw meal option value ("Non-Halal", "Halal", "Vegetarian", "None") into display text
+// Utility to strip HTML tags (like <span class="zh-text">) for WhatsApp sharing
+function stripHTML(htmlString) {
+   const tmp = document.createElement("DIV");
+   tmp.innerHTML = htmlString;
+   return tmp.textContent || tmp.innerText || "";
+}
+
 function translateMealValue(rawValue) {
    switch (rawValue) {
       case "Non-Halal":
@@ -348,20 +338,13 @@ function translateMealValue(rawValue) {
 
 function buildConfirmationModal(data) {
    const modalFooterActions = document.querySelector("#confirmationModal .modal-footer");
-   const calendarBtn = document.getElementById("add-calendar-btn");
 
    if (data.attending === "yes") {
-      // Show action buttons for attending guests
       if (modalFooterActions) modalFooterActions.style.display = "flex";
-      if (calendarBtn) {
-         calendarBtn.href = buildCalendarLink();
-         calendarBtn.target = "_blank";
-      }
    } else {
-      // Hide action buttons when user selects "No"
       if (modalFooterActions) modalFooterActions.style.display = "none";
    }
-   
+
    const summaryContainer = document.getElementById("modal-summary-container");
    const parkingInfo = document.getElementById("modal-parking-info");
    const cardDetails = document.getElementById("card-details");
@@ -381,7 +364,6 @@ function buildConfirmationModal(data) {
    let cardRowsHtml = "";
 
    if (data.attending === "yes") {
-      // Modal: full detail, shown once right after submitting
       modalRowsHtml += summaryRow("summaryLabelAttending", t("formAttendyes"));
       modalRowsHtml += summaryRow("summaryLabelGuests", data.guests);
       if (data.guestNames) {
@@ -416,7 +398,6 @@ function buildConfirmationModal(data) {
 		`;
       modalRowsHtml += mealsBlock;
 
-      // Card: condensed keepsake — guest names already appear per-badge, so no separate list here
       cardRowsHtml += summaryRow("summaryLabelTotalGuests", t("summaryPaxValue").replace("{n}", data.guests));
       cardRowsHtml += mealsBlock;
       if (parseInt(data.children) > 0) {
@@ -426,17 +407,16 @@ function buildConfirmationModal(data) {
          cardRowsHtml += summaryRow("summaryLabelBabyChairNeeded", t("summaryYesValue").replace("{n}", data.babychair));
       }
 
-      parkingInfo.style.display = "block"; // show parking only for Yes
+      parkingInfo.style.display = "block";
    } else {
       modalRowsHtml += summaryRow("summaryLabelAttending", t("formAttendno"));
       modalRowsHtml += summaryRow("summaryLabelMessage", data.message || "—");
-      cardRowsHtml = modalRowsHtml; // nothing to condense for a "No"
+      cardRowsHtml = modalRowsHtml;
 
-      parkingInfo.style.display = "none"; // hide parking for No
+      parkingInfo.style.display = "none";
    }
 
    const displayName = currentLang === "zh" ? formatZH(data.name) : data.name;
-   const displayMessage = currentLang === "zh" ? formatZH(data.message) : data.message;
 
    const thankYouHeading = `<h6 class="mb-2">${displayName}, ${t("thankingRSVP")}</h6>`;
 
@@ -455,22 +435,24 @@ function buildConfirmationModal(data) {
 		`;
    }
 
-   // Plain-text version still needed for Share/clipboard (can't share HTML)
-   const plainSummary = Array.from(document.querySelectorAll("#modal-summary-container .summary-row"))
-      .map((row) => {
-         const label = row.querySelector(".summary-label")?.innerText.trim();
-         const value =
-            row.querySelector(".summary-value")?.innerText.trim() ||
-            Array.from(row.querySelectorAll(".meal-badge"))
-               .map((b) => b.innerText)
-               .join(", ");
-         return `${label}: ${value}`;
-      })
-      .join("\n");
-
    document.getElementById("download-response-btn").onclick = downloadCardAsImage;
-   document.getElementById("share-response-btn").onclick = () => shareSummary(`${data.name}, ${t("thankingRSVP")}\n\n${plainSummary}`);
-   document.getElementById("add-calendar-btn").href = buildCalendarLink();
+
+   // WhatsApp Share button with clean text (HTML tags stripped)
+   document.getElementById("share-response-btn").onclick = () => {
+      const cleanName = stripHTML(data.name);
+      const cleanAttending = data.attending === "yes" ? stripHTML(t("formAttendyes")) : stripHTML(t("formAttendno"));
+
+      let messageText = `🎉 *Wedding RSVP Confirmation*\n\n` + `*Name:* ${cleanName}\n` + `*Status:* ${cleanAttending}\n`;
+
+      if (data.attending === "yes") {
+         messageText += `*Guests:* ${data.guests}\n`;
+      }
+
+      messageText += `\nLooking forward to celebrating with Jason & Ada!`;
+
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(messageText)}`;
+      window.open(whatsappUrl, "_blank");
+   };
 }
 
 function downloadCardAsImage() {
@@ -481,7 +463,6 @@ function downloadCardAsImage() {
       allowTaint: true,
       logging: false,
       onclone: (clonedDoc) => {
-         // Bring element temporarily into view inside the cloned frame for pixel-perfect layout calculation
          const clonedCard = clonedDoc.getElementById("confirmation-card");
          clonedCard.style.position = "static";
          clonedCard.style.left = "0";
@@ -494,44 +475,34 @@ function downloadCardAsImage() {
    });
 }
 
-function shareSummary(summary) {
-   const card = document.getElementById("confirmation-card");
+// Function to generate and download .ics file
+function downloadICSFile() {
+   const event = {
+      title: "Jason & Ada's Wedding",
+      description: "Join us in celebrating the wedding of Jason and Ada!",
+      location: "Your Wedding Venue Location Here",
+      startDate: "20261010T110000",
+      endDate: "20261010T160000",
+   };
 
-   html2canvas(card, {
-      backgroundColor: null,
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      logging: false,
-      onclone: (clonedDoc) => {
-         const clonedCard = clonedDoc.getElementById("confirmation-card");
-         clonedCard.style.position = "static";
-         clonedCard.style.left = "0";
-      },
-   }).then((canvas) =>
-      canvas.toBlob(
-         (blob) => {
-            const file = new File([blob], "RSVP-Confirmation.png", { type: "image/png" });
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-               navigator.share({ files: [file], title: "Jason & Ada's Wedding RSVP", text: summary });
-            } else if (navigator.share) {
-               navigator.share({ title: "Jason & Ada's Wedding RSVP", text: summary });
-            } else {
-               navigator.clipboard.writeText(summary);
-               alert("Copied to clipboard — you can now paste and share it.");
-            }
-         },
-         "image/png",
-         1.0,
-      ),
-   );
+   const icsData = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Jason and Ada Wedding RSVP//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT", `SUMMARY:${event.title}`, `DESCRIPTION:${event.description}`, `LOCATION:${event.location}`, `DTSTART:${event.startDate}`, `DTEND:${event.endDate}`, "STATUS:CONFIRMED", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+
+   const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
+   const link = document.createElement("a");
+   link.href = window.URL.createObjectURL(blob);
+   link.setAttribute("download", "Jason-Ada-Wedding.ics");
+   document.body.appendChild(link);
+   link.click();
+   document.body.removeChild(link);
 }
 
-function buildCalendarLink() {
-   const startDate = "20261212T180000";
-   const endDate = "20261212T220000";
-   const details = encodeURIComponent("Jason & Ada's Wedding Banquet");
-   const location = encodeURIComponent("Xin Cuisine Chinese Restaurant, Concorde Hotel, 2, Jln Sultan Ismail, Kuala Lumpur, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur");
-
-   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Jason+%26+Ada%27s+Wedding&dates=${startDate}/${endDate}&details=${details}&location=${location}&ctz=Asia/Kuala_Lumpur`;
-}
+// Attach ICS download listener to calendar button on DOM load
+document.addEventListener("DOMContentLoaded", () => {
+   const calendarBtn = document.getElementById("add-calendar-btn");
+   if (calendarBtn) {
+      calendarBtn.addEventListener("click", (e) => {
+         e.preventDefault();
+         downloadICSFile();
+      });
+   }
+});
