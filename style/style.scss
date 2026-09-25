@@ -547,13 +547,18 @@ footer {
                display: block;
             }
          }
-         h1 {
+         h2 {
             color: $subheadline;
          }
       }
       #card-details {
          padding-top: 1rem;
          font-size: 14px;
+         p{
+            &.thank-you-summary{
+               color: $secondary;
+            }
+         }
          span.meal-badge {
             font-size: 12px;
          }
@@ -662,7 +667,7 @@ html[lang="zh"] {
    }
 
    #confirmation-card {
-      h1 {
+      h2 {
          .zh-text {
             font-size: 1.5em;
          }

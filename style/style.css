@@ -526,12 +526,15 @@ footer a {
   left: -60%;
   display: block;
 }
-.confirmation-modal #confirmation-card .top-section h1 {
+.confirmation-modal #confirmation-card .top-section h2 {
   color: #e8d9b5;
 }
 .confirmation-modal #confirmation-card #card-details {
   padding-top: 1rem;
   font-size: 14px;
+}
+.confirmation-modal #confirmation-card #card-details p.thank-you-summary {
+  color: #c9a24b;
 }
 .confirmation-modal #confirmation-card #card-details span.meal-badge {
   font-size: 12px;
@@ -604,7 +607,7 @@ html[lang=zh] .confirmation-modal button .zh-text,
 html[lang=zh] .confirmation-modal a .zh-text {
   font-size: 1.4rem;
 }
-html[lang=zh] #confirmation-card h1 .zh-text {
+html[lang=zh] #confirmation-card h2 .zh-text {
   font-size: 1.5em;
 }
 html[lang=zh] #confirmation-card p .zh-text {

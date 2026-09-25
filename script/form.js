@@ -418,7 +418,7 @@ function buildConfirmationModal(data) {
 
    const displayName = currentLang === "zh" ? formatZH(data.name) : data.name;
 
-   const thankYouHeading = `<h6 class="mb-2">${displayName}, ${t("thankingRSVP")}</h6>`;
+   const thankYouHeading = `<p class="mb-2 thank-you-summary">${displayName}, ${t("thankingRSVP")}</p>`;
 
    summaryContainer.innerHTML = `${thankYouHeading}${modalRowsHtml}`;
    cardDetails.innerHTML = `${thankYouHeading}${cardRowsHtml}`;
@@ -480,7 +480,7 @@ function downloadICSFile() {
    const event = {
       title: "Jason & Ada's Wedding",
       description: "Join us in celebrating the wedding of Jason and Ada!",
-      location: "Your Wedding Venue Location Here",
+      location: "Xin Cuisine Chinese Restaurant, Concorde Hotel",
       startDate: "20261010T110000",
       endDate: "20261010T160000",
    };
