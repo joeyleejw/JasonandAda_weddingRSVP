@@ -204,8 +204,6 @@ section {
       }
    }
 
-   /* .bg-blend-section removed (not used) */
-
    .rounded-big-top {
       border-radius: 20em 20em 0 0;
    }
@@ -296,14 +294,12 @@ section {
                   margin-left: 1rem;
                   margin-bottom: 0.5rem;
                   display: flex;
-                  gap: 5px;
-                  i.bi {
-                     font-size: 1.25rem;
-                  }
+                  gap: 8px;
+                  align-items: start;
                   img {
                      width: 100%;
                      filter: invert(99%) sepia(32%) saturate(1469%) hue-rotate(315deg) brightness(100%) contrast(82%);
-                     max-width: 20px;
+                     max-width: 30px;
                   }
                }
             }
@@ -356,18 +352,6 @@ section {
 
                   button {
                      @include rsvpButton;
-                  }
-
-                  #meal-fields {
-                     display: flex;
-                     flex-direction: column;
-                     flex-wrap: wrap;
-                     div {
-                        display: flex;
-                        * {
-                           width: calc(100% / 2);
-                        }
-                     }
                   }
                }
             }
@@ -459,59 +443,6 @@ footer {
          display: inline-block;
       }
    }
-   #modal-parking-info {
-      margin-top: 1rem;
-
-      h6 {
-         margin-bottom: 0.75rem;
-      }
-
-      .parking-steps {
-         list-style: none;
-         counter-reset: parking-step;
-         padding-left: 0;
-         margin: 0;
-
-         li {
-            counter-increment: parking-step;
-            position: relative;
-            padding-left: 2.25rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.45;
-            color: $subheadline;
-
-            &::before {
-               content: counter(parking-step);
-               position: absolute;
-               left: 0;
-               top: 0;
-               width: 1.5rem;
-               height: 1.5rem;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               border: 1.5px solid $secondary;
-               border-radius: 50%;
-               color: $secondary;
-               font-size: 0.8rem;
-               font-weight: 700;
-            }
-
-            &:last-child {
-               margin-bottom: 0;
-            }
-         }
-      }
-
-      .parking-note {
-         margin-top: 0.85rem;
-         padding-left: 0.75em;
-         border-left: 1.5px solid $secondary;
-         font-size: 0.8rem;
-         font-style: italic;
-         opacity: 0.75;
-      }
-   }
    #confirmation-card {
       position: absolute;
       top: 0px;
@@ -554,19 +485,16 @@ footer {
       #card-details {
          padding-top: 1rem;
          font-size: 14px;
-         p{
-            &.thank-you-summary{
-               color: $secondary;
-            }
-         }
          span.meal-badge {
             font-size: 12px;
          }
-         .msg-answer-section {
-            border-left: 1.5px solid $secondary;
-            padding-left: 1em;
-            font-style: italic;
-            opacity: 0.7;
+
+         .location{
+            img{
+               width: 100%;
+               filter: invert(99%) sepia(32%) saturate(1469%) hue-rotate(315deg) brightness(100%) contrast(82%);
+               max-width: 30px;
+            }
          }
       }
    }

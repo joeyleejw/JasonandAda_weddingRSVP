@@ -12,8 +12,12 @@ const childrenWrapper = document.getElementById("children-wrapper");
 const childrenInput = document.getElementById("children");
 const babychairWrapper = document.getElementById("babychair-wrapper");
 const babychairSelect = document.getElementById("babychair");
-const babychairCountWrapper = document.getElementById("babychair-count-wrapper");
-const babychairCount = document.getElementById("babychair-count");
+
+// Venue location links
+const VENUE_MAPS = {
+   googleMaps: "https://maps.google.com/?q=Xin+Cuisine+Chinese+Restaurant+Concorde+Hotel+Kuala+Lumpur",
+   waze: "https://waze.com/ul?q=Concorde+Hotel+Kuala+Lumpur",
+};
 
 document.querySelector('iframe[name="hidden-iframe"]').addEventListener("load", handleSubmitResponse);
 
@@ -319,16 +323,7 @@ function translateMealValue(rawValue) {
 }
 
 function buildConfirmationModal(data) {
-   const modalFooterActions = document.querySelector("#confirmationModal .modal-footer");
-
-   if (data.attending === "yes") {
-      if (modalFooterActions) modalFooterActions.style.display = "flex";
-   } else {
-      if (modalFooterActions) modalFooterActions.style.display = "none";
-   }
-
    const summaryContainer = document.getElementById("modal-summary-container");
-   const parkingInfo = document.getElementById("modal-parking-info");
    const cardDetails = document.getElementById("card-details");
 
    const summaryRow = (labelKey, value) => `
@@ -343,7 +338,6 @@ function buildConfirmationModal(data) {
 	`;
 
    let modalRowsHtml = "";
-   let cardRowsHtml = "";
 
    if (data.attending === "yes") {
       modalRowsHtml += summaryRow("summaryLabelAttending", t("formAttendyes"));
@@ -379,44 +373,44 @@ function buildConfirmationModal(data) {
 			</div>
 		`;
       modalRowsHtml += mealsBlock;
-
-      cardRowsHtml += summaryRow("summaryLabelTotalGuests", t("summaryPaxValue").replace("{n}", data.guests));
-      cardRowsHtml += mealsBlock;
-      if (parseInt(data.children) > 0) {
-         cardRowsHtml += summaryRow("summaryLabelChildrenBelow12", t("summaryYesPaxValue").replace("{n}", data.children));
-      }
-      if (data.babychair !== "0") {
-         cardRowsHtml += summaryRow("summaryLabelBabyChairNeeded", t("summaryYesValue").replace("{n}", data.babychair));
-      }
-
-      parkingInfo.style.display = "block";
    } else {
       modalRowsHtml += summaryRow("summaryLabelAttending", t("formAttendno"));
       modalRowsHtml += summaryRow("summaryLabelMessage", data.message || "—");
-      cardRowsHtml = modalRowsHtml;
-
-      parkingInfo.style.display = "none";
    }
 
    const displayName = currentLang === "zh" ? formatZH(data.name) : data.name;
    const thankYouHeading = `<h6 class="mb-2">${displayName}, ${t("thankingRSVP")}</h6>`;
 
+   // Populate modal summary with full submission details
    summaryContainer.innerHTML = `${thankYouHeading}${modalRowsHtml}`;
-   cardDetails.innerHTML = `${thankYouHeading}${cardRowsHtml}`;
 
+   // Populate confirmation card: Parking Info only
+   let cardHtml = "";
    if (data.attending === "yes") {
-      cardDetails.innerHTML += `
-			<div class="mt-3">
-				<h6 class="mb-2">${t("modalParkingTitle")}</h6>
-				<div class="msg-answer-section">
-					<p>${t("parkingSummary")}</p>
-					<p>${t("modalParkingNote")}</p>
-				</div>
-			</div>
+      cardHtml = `
+         <h6 data-i18n="gettingThere" class="mb-1"></h6>
+<div class="d-flex align-items-start location gap-2 mb-3">
+    <img loading="lazy" src="Assets/maps.avif" alt="Map">
+    <div>
+        <span data-i18n="locationTitle"></span>
+        <p class="small" data-i18n="locationFullAddress"></p>
+    </div>
+</div>
+
+    <div>
+        <img src="Assets/parking-map.avif" alt="Map" class="w-100 mb-2" />
+        <ol class="parking-steps small">
+            <li>${t("modalParkingStep1")}</li>
+            <li>${t("modalParkingStep2")}</li>
+            <li>${t("modalParkingStep3")}</li>
+        </ol>
+    </div>
 		`;
    }
+   cardDetails.innerHTML = cardHtml;
+   applyTranslations(currentLang);
 
-   // Plain text summary fallback for copy/share
+   // Build plain-text summary + location links for sharing
    const plainSummary = Array.from(document.querySelectorAll("#modal-summary-container .summary-row"))
       .map((row) => {
          const label = row.querySelector(".summary-label")?.innerText.trim();
@@ -429,8 +423,20 @@ function buildConfirmationModal(data) {
       })
       .join("\n");
 
+   const shareTextWithLocation = `${plainSummary}\n\n📍 Venue Location:\nGoogle Maps: ${VENUE_MAPS.googleMaps}\nWaze: ${VENUE_MAPS.waze}`;
+
    document.getElementById("download-response-btn").onclick = downloadCardAsImage;
-   document.getElementById("share-response-btn").onclick = () => shareSummary(plainSummary);
+   document.getElementById("share-response-btn").onclick = () => shareSummary(shareTextWithLocation);
+
+   const googleMapsBtn = document.getElementById("open-google-maps-btn");
+   const wazeBtn = document.getElementById("open-waze-btn");
+   if (googleMapsBtn && wazeBtn) {
+      const showMapButtons = data.attending === "yes";
+      googleMapsBtn.style.display = showMapButtons ? "inline-block" : "none";
+      wazeBtn.style.display = showMapButtons ? "inline-block" : "none";
+      googleMapsBtn.href = VENUE_MAPS.googleMaps;
+      wazeBtn.href = VENUE_MAPS.waze;
+   }
 }
 
 function downloadCardAsImage() {
@@ -453,8 +459,8 @@ function downloadCardAsImage() {
    });
 }
 
-// Share confirmation card snapshot or fallback to text
-function shareSummary(summary) {
+// Share confirmation card image along with details & location links
+function shareSummary(summaryText) {
    const card = document.getElementById("confirmation-card");
 
    html2canvas(card, {
@@ -473,11 +479,11 @@ function shareSummary(summary) {
          (blob) => {
             const file = new File([blob], "RSVP-Confirmation.png", { type: "image/png" });
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
-               navigator.share({ files: [file], title: "Jason & Ada's Wedding RSVP", text: summary });
+               navigator.share({ files: [file], title: "Jason & Ada's Wedding RSVP", text: summaryText });
             } else if (navigator.share) {
-               navigator.share({ title: "Jason & Ada's Wedding RSVP", text: summary });
+               navigator.share({ title: "Jason & Ada's Wedding RSVP", text: summaryText });
             } else {
-               navigator.clipboard.writeText(summary);
+               navigator.clipboard.writeText(summaryText);
                alert("Copied to clipboard — you can now paste and share it.");
             }
          },
@@ -487,13 +493,13 @@ function shareSummary(summary) {
    );
 }
 
-// Function to generate and download .ics file
+// Function to generate and download .ics file with reminders
 function downloadICSFile() {
    const event = {
       title: "Jason & Ada's Wedding",
       description: "Join us in celebrating the wedding of Jason and Ada!",
-      location: "Your Wedding Venue Location Here",
-      startDate: "20261212T190000",
+      location: "Xin Cuisine Chinese Restaurant, Concorde Hotel",
+      startDate: "20261212T190000", // Adjust event start date/time as needed
       endDate: "20261212T220000",
    };
 
@@ -510,8 +516,23 @@ function downloadICSFile() {
       `DTSTART:${event.startDate}`,
       `DTEND:${event.endDate}`,
       "STATUS:CONFIRMED",
+
+      // Reminder 1: 1 week before (7 days)
+      "BEGIN:VALARM",
+      "ACTION:DISPLAY",
+      "DESCRIPTION:Reminder: Jason & Ada's Wedding is in 1 week!",
+      "TRIGGER:-P7D",
+      "END:VALARM",
+
+      // Reminder 2: 1 day before
+      "BEGIN:VALARM",
+      "ACTION:DISPLAY",
+      "DESCRIPTION:Reminder: Jason & Ada's Wedding is tomorrow!",
+      "TRIGGER:-P1D",
+      "END:VALARM",
+
       "END:VEVENT",
-      "END:VCALENDAR"
+      "END:VCALENDAR",
    ].join("\r\n");
 
    const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });

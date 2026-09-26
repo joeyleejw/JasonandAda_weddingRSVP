@@ -175,9 +175,6 @@ section .bg-main-section .bg-banner-wrapper .main-headline a.rsvp-button {
 section .bg-main-section .bg-banner-wrapper .main-headline:last-child {
   background: linear-gradient(to top, #b10008 80%, transparent);
 }
-section {
-  /* .bg-blend-section removed (not used) */
-}
 section .rounded-big-top {
   border-radius: 20em 20em 0 0;
 }
@@ -266,15 +263,13 @@ section#rsvp .bg-banner.bg-overlay .playground > div {
   margin-left: 1rem;
   margin-bottom: 0.5rem;
   display: flex;
-  gap: 5px;
-}
-section#rsvp .bg-banner.bg-overlay .playground > div i.bi {
-  font-size: 1.25rem;
+  gap: 8px;
+  align-items: start;
 }
 section#rsvp .bg-banner.bg-overlay .playground > div img {
   width: 100%;
   filter: invert(99%) sepia(32%) saturate(1469%) hue-rotate(315deg) brightness(100%) contrast(82%);
-  max-width: 20px;
+  max-width: 30px;
 }
 section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form label {
   margin-bottom: 0.5rem;
@@ -325,17 +320,6 @@ section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form button {
 section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form button:active {
   background: transparent;
   color: #c9a24b;
-}
-section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form #meal-fields {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form #meal-fields div {
-  display: flex;
-}
-section#rsvp .bg-banner.bg-overlay .form-section form#rsvp-form #meal-fields div * {
-  width: 50%;
 }
 section#rsvp .bg-banner #countdown {
   display: flex;
@@ -435,53 +419,6 @@ footer a {
   font-size: 12px;
   display: inline-block;
 }
-.confirmation-modal #modal-parking-info {
-  margin-top: 1rem;
-}
-.confirmation-modal #modal-parking-info h6 {
-  margin-bottom: 0.75rem;
-}
-.confirmation-modal #modal-parking-info .parking-steps {
-  list-style: none;
-  counter-reset: parking-step;
-  padding-left: 0;
-  margin: 0;
-}
-.confirmation-modal #modal-parking-info .parking-steps li {
-  counter-increment: parking-step;
-  position: relative;
-  padding-left: 2.25rem;
-  margin-bottom: 0.75rem;
-  line-height: 1.45;
-  color: #e8d9b5;
-}
-.confirmation-modal #modal-parking-info .parking-steps li::before {
-  content: counter(parking-step);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.5px solid #c9a24b;
-  border-radius: 50%;
-  color: #c9a24b;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-.confirmation-modal #modal-parking-info .parking-steps li:last-child {
-  margin-bottom: 0;
-}
-.confirmation-modal #modal-parking-info .parking-note {
-  margin-top: 0.85rem;
-  padding-left: 0.75em;
-  border-left: 1.5px solid #c9a24b;
-  font-size: 0.8rem;
-  font-style: italic;
-  opacity: 0.75;
-}
 .confirmation-modal #confirmation-card {
   position: absolute;
   top: 0px;
@@ -533,17 +470,13 @@ footer a {
   padding-top: 1rem;
   font-size: 14px;
 }
-.confirmation-modal #confirmation-card #card-details p.thank-you-summary {
-  color: #c9a24b;
-}
 .confirmation-modal #confirmation-card #card-details span.meal-badge {
   font-size: 12px;
 }
-.confirmation-modal #confirmation-card #card-details .msg-answer-section {
-  border-left: 1.5px solid #c9a24b;
-  padding-left: 1em;
-  font-style: italic;
-  opacity: 0.7;
+.confirmation-modal #confirmation-card #card-details .location img {
+  width: 100%;
+  filter: invert(99%) sepia(32%) saturate(1469%) hue-rotate(315deg) brightness(100%) contrast(82%);
+  max-width: 30px;
 }
 
 html[lang=zh] * {

@@ -86,7 +86,8 @@
                         <div class="col-12 col-sm-8">
                             <div class="position-relative playground">
                                 <div class="date fade-in-section">
-                                    <i class="bi bi-calendar-heart"></i> <span data-i18n="RSVPdate"></span>
+                                    <img loading="lazy" src="Assets/calendar.avif" alt="Calendar"><span
+                                        data-i18n="RSVPdate"></span>
                                 </div>
                                 <div class="reception-time fade-in-section">
                                     <img loading="lazy" src="Assets/wine-glasses.avif" alt="Reception"> <span
@@ -97,7 +98,12 @@
                                         data-i18n="RSVPdinner"></span>
                                 </div>
                                 <div class="location fade-in-section">
-                                    <i class="bi bi-geo-alt"></i> <span data-i18n="RSVPlocation"></span>
+                                    <img loading="lazy" src="Assets/maps.avif" alt="Map"> <span
+                                        data-i18n="RSVPlocation"></span>
+                                </div>
+                                <div class="dinner-time fade-in-section">
+                                    <img loading="lazy" src="Assets/suit.avif" alt="Suit"> <span
+                                        data-i18n="RSVPtheme"></span>
                                 </div>
                             </div>
                         </div>
@@ -254,20 +260,6 @@
                 <div class="modal-body">
                     <div id="modal-summary-container"></div>
 
-                    <div id="modal-parking-info">
-                        <div class="d-flex">
-                            <div>
-                                <h6 data-i18n="modalParkingTitle"></h6>
-                                <ol class="parking-steps">
-                                    <li data-i18n="modalParkingStep1"></li>
-                                    <li data-i18n="modalParkingStep2"></li>
-                                    <li data-i18n="modalParkingStep3"></li>
-                                </ol>
-                                <p class="mt-2"><small data-i18n="modalParkingNote"></small></p>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="d-flex gap-2 mt-3 flex-wrap">
                         <button id="download-response-btn" data-i18n="modalDownload"></button>
                         <button id="share-response-btn" data-i18n="modalShare"></button>
@@ -284,7 +276,7 @@
                                 <div>
                                     <p class="mb-0"><small data-i18n="confirmationConfirm"></small></p>
                                     <h2 data-i18n="lovelyCouple"></h2>
-                                    <p data-i18n="confirmationDateTime"></p>
+                                    <p data-i18n="RSVPdate"></p>
                                 </div>
                             </div>
                             <div id="card-details"></div>
