@@ -52,6 +52,11 @@ function t(key) {
    return currentLang === "zh" ? formatZH(raw) : raw;
 }
 
+// Plain-text translation (no HTML), for share text, alerts, etc.
+function tPlain(key) {
+   return translations[currentLang]?.[key] || translations.en[key] || key;
+}
+
 // Escape anything a guest typed before it goes into HTML
 function escapeHTML(value) {
    const map = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
@@ -430,7 +435,7 @@ function buildShareText() {
       return `${label}: ${value}`;
    });
 
-   return `${lines.join("\n")}\n\n📍 Venue Location:\nGoogle Maps: ${VENUE_MAPS.googleMaps}\nWaze: ${VENUE_MAPS.waze}`;
+   return `${lines.join("\n")}\n\n📍 ${tPlain("shareVenueLocation")}:\nGoogle Maps: ${VENUE_MAPS.googleMaps}\n\nWaze: ${VENUE_MAPS.waze}`;
 }
 
 // =============================================================

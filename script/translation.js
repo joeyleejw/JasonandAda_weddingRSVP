@@ -82,6 +82,7 @@ const translations = {
       locationTitle: "Xin Cuisine Chinese Restaurant",
       locationFullAddress: "Concorde Hotel, 2, Jln Sultan Ismail, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
       confirmationConfirm: "RSVP Confirmed",
+      shareVenueLocation: "Venue Location",
    },
 
    zh: {
@@ -167,5 +168,6 @@ const translations = {
       locationTitle: "Xin Cuisine Chinese Restaurant",
       locationFullAddress: "Concorde Hotel, 2, Jln Sultan Ismail, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
       confirmationConfirm: "回覆已確認",
+      shareVenueLocation: "場地位置",
    },
 };
