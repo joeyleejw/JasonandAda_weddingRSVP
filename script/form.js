@@ -389,8 +389,8 @@ function downloadICSFile() {
    const event = {
       title: "Jason & Ada's Wedding",
       description: "Join us in celebrating the wedding of Jason and Ada!",
-      location: "Xin Cuisine Chinese Restaurant, Concorde Hotel",
-      startDate: "20261212T190000", // adjust event start date/time as needed
+      location: "Xin Cuisine Chinese Restaurant, Concorde Hotel Kuala Lumpur",
+      startDate: "20261212T180000", // adjust event start date/time as needed
       endDate: "20261212T220000",
    };
 
