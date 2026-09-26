@@ -377,19 +377,7 @@ footer a {
   font-size: 14px;
 }
 .confirmation-modal .modal-header {
-  position: relative;
-  padding: 1rem 1rem 1rem 0;
-}
-.confirmation-modal .modal-header::after {
-  content: "";
-  background: #c9a24b;
-  width: 100%;
-  height: 1px;
-  position: absolute;
-  opacity: 0.8;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  padding: 0;
 }
 .confirmation-modal .modal-body {
   padding: 1rem 0;

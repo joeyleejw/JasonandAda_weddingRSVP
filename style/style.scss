@@ -416,11 +416,7 @@ footer {
    color: $subheadline;
    font-size: 14px;
    .modal-header {
-      position: relative;
-      padding: 1rem 1rem 1rem 0;
-      &::after {
-         @include goldLine;
-      }
+      padding: 0;
    }
 
    .modal-body {

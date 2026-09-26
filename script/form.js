@@ -1,12 +1,11 @@
 // =============================================================
 // RSVP form: dynamic fields, validation, submission,
-// confirmation modal, shareable card image and calendar file
+// thank-you modal, text share and calendar file
 // =============================================================
 
 // ---------- State ----------
 let lastSubmission = {};
 let formSubmitted = false;
-let cardBlobPromise = null; // pre-rendered confirmation card image (PNG)
 let closedWithX = false;
 
 // ---------- Element references ----------
@@ -34,13 +33,6 @@ const VENUE_MAPS = {
    waze: "https://waze.com/ul?q=Concorde+Hotel+Kuala+Lumpur",
 };
 
-const SHARE_TITLE = "Jason & Ada's Wedding RSVP";
-
-const MEAL_KEYS = {
-   "Non-Halal": "formMealNonHalal",
-   Halal: "formMealHalal",
-   Vegetarian: "formMealVegetarian",
-};
 
 // =============================================================
 // Helpers
@@ -52,21 +44,16 @@ function t(key) {
    return currentLang === "zh" ? formatZH(raw) : raw;
 }
 
-// Plain-text translation (no HTML), for share text, alerts, etc.
+// Plain-text translation (no HTML, <br> becomes a space), for share text, alerts, etc.
 function tPlain(key) {
-   return translations[currentLang]?.[key] || translations.en[key] || key;
+   const raw = translations[currentLang]?.[key] || translations.en[key] || key;
+   return raw.replace(/<br\s*\/?>/gi, " ").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 }
 
 // Escape anything a guest typed before it goes into HTML
 function escapeHTML(value) {
    const map = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
    return String(value ?? "").replace(/[&<>"']/g, (c) => map[c]);
-}
-
-// Guest-typed text, escaped, with Chinese styling applied when needed
-function displayText(value) {
-   const safe = escapeHTML(value);
-   return currentLang === "zh" ? formatZH(safe) : safe;
 }
 
 function refreshRowHeights() {
@@ -327,11 +314,7 @@ function handleSubmitResponse() {
    submitBtn.disabled = false;
    submitBtn.innerHTML = t("buttonSubmit");
 
-   buildConfirmationModal(lastSubmission);
-
-   // Render the card image as soon as the modal is visible, so Share is instant
-   cardBlobPromise = null;
-   modalEl.addEventListener("shown.bs.modal", () => getCardBlob().catch(() => {}), { once: true });
+   showThankYouMessage(lastSubmission.attending);
 
    bootstrap.Modal.getOrCreateInstance(modalEl, {
       backdrop: "static", // clicking outside won't close it
@@ -351,180 +334,50 @@ function resetForm() {
 }
 
 // =============================================================
-// Confirmation modal
+// Thank-you modal
 // =============================================================
 
-function translateMeal(meal) {
-   return t(MEAL_KEYS[meal] || "mealNone");
-}
-
-function summaryRow(labelKey, valueHtml) {
-   return `
-      <div class="d-flex justify-content-between py-2 summary-row">
-         <div class="col"><span class="summary-label fw-bold">${t(labelKey)}</span></div>
-         <div class="col-7 text-end"><span class="summary-value">${valueHtml}</span></div>
-      </div>`;
-}
-
-function buildConfirmationModal(data) {
-   const isYes = data.attending === "yes";
-   let rows = "";
-
-   if (isYes) {
-      rows += summaryRow("summaryLabelAttending", t("formAttendyes"));
-      rows += summaryRow("summaryLabelGuests", displayText(data.guests));
-      if (data.guestNames) rows += summaryRow("summaryLabelGuestNames", displayText(data.guestNames));
-      if (parseInt(data.children, 10) > 0) rows += summaryRow("summaryLabelChildren", displayText(data.children));
-      if (data.babychair !== "0") rows += summaryRow("summaryLabelBabyChairs", displayText(data.babychair));
-
-      const mealBadges = data.meals
-         .map((m) => `<span class="meal-badge">${displayText(m.name)}: ${translateMeal(m.meal)}</span>`)
-         .join("");
-
-      rows += `
-         <div class="py-3 summary-row mb-2">
-            <span class="summary-label fw-bold">${t("summaryLabelMeals")}</span>
-            <div class="mt-2 d-flex gap-2 flex-wrap">${mealBadges}</div>
-         </div>`;
-   } else {
-      rows += summaryRow("summaryLabelAttending", t("formAttendno"));
-      rows += summaryRow("summaryLabelMessage", displayText(data.message) || "—");
-   }
-
-   document.getElementById("modal-summary-container").innerHTML =
-      `<h6 class="mb-2">${displayText(data.name)}, ${t("thankingRSVP")}</h6>${rows}`;
-
-   // Confirmation card (the shared image): directions and parking, for attendees only.
-   // No loading="lazy" here: the card sits off-screen and lazy images may never load.
-   document.getElementById("card-details").innerHTML = isYes
-      ? `
-         <h6 data-i18n="gettingThere" class="mb-1"></h6>
-         <div class="d-flex align-items-start location gap-2 mb-3">
-            <img src="Assets/maps.avif" alt="Map">
-            <div>
-               <span data-i18n="locationTitle"></span>
-               <p class="small" data-i18n="locationFullAddress"></p>
-            </div>
-         </div>
-         <div>
-            <img src="Assets/parking-map.avif" alt="Parking map" class="w-100 mb-2">
-            <ol class="parking-steps small">
-               <li data-i18n="modalParkingStep1"></li>
-               <li data-i18n="modalParkingStep2"></li>
-               <li data-i18n="modalParkingStep3"></li>
-            </ol>
-         </div>`
-      : "";
-
+// Switch the message key so it stays translated if the language changes
+function showThankYouMessage(attending) {
+   const messageEl = document.getElementById("modal-thank-you-message");
+   messageEl.setAttribute("data-i18n", attending === "no" ? "modalThankYouNo" : "modalThankYouYes");
    applyTranslations(currentLang);
-
-   const shareText = buildShareText();
-   document.getElementById("share-response-btn").onclick = (e) => {
-      e.preventDefault();
-      shareSummary(shareText);
-   };
 }
 
-// Plain-text version of the summary, plus venue links, for sharing
+// =============================================================
+// Share (text only, in the current language)
+// =============================================================
+
 function buildShareText() {
-   const lines = Array.from(document.querySelectorAll("#modal-summary-container .summary-row"), (row) => {
-      const label = row.querySelector(".summary-label")?.innerText.trim();
-      const value =
-         row.querySelector(".summary-value")?.innerText.trim() ||
-         Array.from(row.querySelectorAll(".meal-badge"), (badge) => badge.innerText.trim()).join(", ");
-      return `${label}: ${value}`;
-   });
-
-   return `${lines.join("\n")}\n\n📍 ${tPlain("shareVenueLocation")}:\nGoogle Maps: ${VENUE_MAPS.googleMaps}\n\nWaze: ${VENUE_MAPS.waze}`;
+   return [
+      `💍 ${tPlain("shareTitle")}`,
+      "",
+      tPlain("shareThankYou"),
+      "",
+      `📅 ${tPlain("RSVPdate")}`,
+      `🥂 ${tPlain("RSVPreception")}`,
+      `🍽️ ${tPlain("RSVPdinner")}`,
+      "",
+      `📍 ${tPlain("shareVenueLocation")}`,
+      `Google Maps: ${VENUE_MAPS.googleMaps}`,
+      "",
+      `Waze: ${VENUE_MAPS.waze}`,
+   ].join("\n");
 }
 
-// =============================================================
-// Confirmation card image and sharing
-// =============================================================
-
-// html2canvas ignores CSS `filter`, so apply each image's filter to its pixels in the clone
-function bakeFilteredImages(clonedDoc) {
-   const originals = document.querySelectorAll("#confirmation-card img");
-   const clones = clonedDoc.querySelectorAll("#confirmation-card img");
-
-   originals.forEach((img, i) => {
-      const filter = getComputedStyle(img).filter;
-      if (!filter || filter === "none" || !img.complete || !img.naturalWidth) return;
-
-      try {
-         const canvas = document.createElement("canvas");
-         canvas.width = img.naturalWidth;
-         canvas.height = img.naturalHeight;
-         const ctx = canvas.getContext("2d");
-
-         if ("filter" in ctx) {
-            // Chrome, Firefox, newer Safari: apply the exact same CSS filter
-            ctx.filter = filter;
-            ctx.drawImage(img, 0, 0);
-         } else {
-            // Older Safari fallback: paint every visible pixel white
-            ctx.drawImage(img, 0, 0);
-            ctx.globalCompositeOperation = "source-in";
-            ctx.fillStyle = "#fff";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-         }
-
-         clones[i].src = canvas.toDataURL("image/png");
-         clones[i].style.filter = "none";
-      } catch (err) {
-         console.warn("Could not bake filter for image:", img.src, err);
-      }
-   });
-}
-
-function captureCard() {
-   return html2canvas(document.getElementById("confirmation-card"), {
-      backgroundColor: null,
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      logging: false,
-      onclone: (clonedDoc) => {
-         const clonedCard = clonedDoc.getElementById("confirmation-card");
-         clonedCard.style.position = "static";
-         clonedCard.style.left = "0";
-         bakeFilteredImages(clonedDoc);
-      },
-   });
-}
-
-function renderCardBlob() {
-   const imgs = Array.from(document.querySelectorAll("#confirmation-card img"));
-   return Promise.all(imgs.map((img) => (img.complete ? null : img.decode().catch(() => {}))))
-      .then(captureCard)
-      .then(
-         (canvas) =>
-            new Promise((resolve, reject) =>
-               canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error("Could not create image"))), "image/png"),
-            ),
-      );
-}
-
-function getCardBlob() {
-   if (!cardBlobPromise) cardBlobPromise = renderCardBlob();
-   return cardBlobPromise;
-}
-
-async function shareSummary(summaryText) {
+async function shareInvitation() {
+   const text = buildShareText();
    try {
-      const blob = await getCardBlob();
-      const file = new File([blob], "RSVP-Confirmation.png", { type: "image/png" });
-
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-         await navigator.share({ files: [file], title: SHARE_TITLE, text: summaryText });
-      } else if (navigator.share) {
-         await navigator.share({ title: SHARE_TITLE, text: summaryText });
-      } else {
-         await navigator.clipboard.writeText(summaryText);
-         alert("Copied to clipboard — you can now paste and share it.");
+      if (navigator.share) {
+         await navigator.share({ text });
+         return;
       }
+      await navigator.clipboard.writeText(text);
+      alert(tPlain("shareCopied"));
    } catch (err) {
-      if (err.name !== "AbortError") console.error("Share failed:", err); // AbortError = guest closed the share sheet
+      if (err.name === "AbortError") return; // guest closed the share sheet
+      // Clipboard can be blocked in some in-app browsers: last-resort copy prompt
+      window.prompt("", text);
    }
 }
 
@@ -594,6 +447,11 @@ function downloadICSFile() {
 document.querySelector('iframe[name="hidden-iframe"]').addEventListener("load", handleSubmitResponse);
 
 guestsInput.addEventListener("input", renderGuestNames);
+
+document.getElementById("share-response-btn").addEventListener("click", (e) => {
+   e.preventDefault();
+   shareInvitation();
+});
 
 document.getElementById("add-calendar-btn")?.addEventListener("click", (e) => {
    e.preventDefault();

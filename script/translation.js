@@ -59,30 +59,18 @@ const translations = {
       contactUsmale: "Jason",
       contactUsfemale: "Ada",
 
-      // modal
-      modalTitle: "Wedding RSVP",
-      modalParkingTitle: "Parking Information",
-      modalParkingStep1: "From the lobby, turn left into the parking entrance.",
-      modalParkingStep2: "Once parked, head to Level 2B and follow the signs for \u201cAccess to Link Bridge.\u201d",
-      modalParkingStep3: "Cross the bridge and follow the signage down to the reception — we'll be there to greet you.",
+      // thank-you modal
+      modalTitle: "Thank You!",
+      modalThankYouYes: "We've received your RSVP and can't wait to celebrate with you.",
+      modalThankYouNo: "We've received your RSVP. We'll miss you, and thank you for your kind wishes!",
       modalShare: "Share",
       modalAddCalendar: "Add to Calendar",
 
-      // confirmation modal/card — dynamic summary content
-      thankingRSVP: "thank you for your RSVP!",
-      summaryLabelAttending: "Attending",
-      summaryLabelGuests: "Guests",
-      summaryLabelGuestNames: "Guest Names",
-      summaryLabelChildren: "Children",
-      summaryLabelBabyChairs: "Baby Chairs",
-      summaryLabelMeals: "Meals",
-      summaryLabelMessage: "Message",
-      mealNone: "None",
-      gettingThere: "Getting There",
-      locationTitle: "Xin Cuisine Chinese Restaurant",
-      locationFullAddress: "Concorde Hotel, 2, Jln Sultan Ismail, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
-      confirmationConfirm: "RSVP Confirmed",
-      shareVenueLocation: "Venue Location",
+      // share message (plain text only, no HTML)
+      shareTitle: "Jason & Ada's Wedding",
+      shareThankYou: "Thank you and see you there!",
+      shareVenueLocation: "Venue Location:",
+      shareCopied: "Copied! You can now paste and share it.",
    },
 
    zh: {
@@ -145,29 +133,17 @@ const translations = {
       contactUsmale: "Jason",
       contactUsfemale: "Ada",
 
-      // modal
-      modalTitle: "婚禮回覆",
-      modalParkingTitle: "停車資訊",
-      modalParkingStep1: "從大廳入口出發，直行，然後左轉進入停車場入口。",
-      modalParkingStep2: "停好車後，請前往 2B 樓層，並留意「通往連接橋」的指示牌。",
-      modalParkingStep3: "穿過連接橋，沿指示牌走向宴會廳 — 我們將在那裡迎接您。",
+      // thank-you modal
+      modalTitle: "感謝您！",
+      modalThankYouYes: "我們已收到您的回覆，期待與您共享這份喜悅。",
+      modalThankYouNo: "我們已收到您的回覆。雖然遺憾您無法出席，衷心感謝您的祝福！",
       modalShare: "分享",
       modalAddCalendar: "新增至日曆",
 
-      // confirmation modal/card — dynamic summary content
-      thankingRSVP: "感謝您的回覆！",
-      summaryLabelAttending: "是否出席",
-      summaryLabelGuests: "出席人數",
-      summaryLabelGuestNames: "賓客姓名",
-      summaryLabelChildren: "兒童人數",
-      summaryLabelBabyChairs: "嬰兒椅數量",
-      summaryLabelMeals: "餐點",
-      summaryLabelMessage: "留言",
-      mealNone: "無",
-      gettingThere: "交通指南",
-      locationTitle: "Xin Cuisine Chinese Restaurant",
-      locationFullAddress: "Concorde Hotel, 2, Jln Sultan Ismail, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
-      confirmationConfirm: "回覆已確認",
-      shareVenueLocation: "場地位置",
+      // share message (plain text only, no HTML)
+      shareTitle: "傑晟與張融的婚禮",
+      shareThankYou: "感謝您，到時見！",
+      shareVenueLocation: "場地位置：",
+      shareCopied: "已複製！您現在可以貼上並分享。",
    },
 };
