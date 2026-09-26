@@ -473,9 +473,6 @@ footer a {
   max-width: 30px;
 }
 
-html[lang=zh] * {
-  vertical-align: middle;
-}
 html[lang=zh] h1 {
   line-height: 0.8;
 }

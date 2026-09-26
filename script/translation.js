@@ -54,7 +54,7 @@ const translations = {
       buttonSubmitting: "Submitting...",
 
       // footer
-      authorCopyright: "Author: Joey Lee @ 2026",
+      authorCopyright: "Author: Joey Lee &copy; 2026",
       contactUstext: "Contact Us",
       contactUsmale: "Jason",
       contactUsfemale: "Ada",
@@ -128,7 +128,7 @@ const translations = {
       buttonSubmitting: "提交中……",
 
       // footer
-      authorCopyright: "作者：Joey Lee @ 2026",
+      authorCopyright: "作者：Joey Lee &copy; 2026",
       contactUstext: "聯繫我們",
       contactUsmale: "Jason",
       contactUsfemale: "Ada",
