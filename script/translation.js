@@ -1,11 +1,12 @@
 const translations = {
    en: {
       rsvpMain: "J&A",
+
       // welcome section
       welcomeHeadline: "WE ARE GETTING MARRIED!",
       welcomeSubheadline: "We would be honoured to surround ourselves with the people we love in celebration of our joyous union.",
       lovelyCouple: "JASON & ADA",
-	  rsvpButton: "RSVP",
+      rsvpButton: "RSVP",
 
       // rsvp section
       RSVPbefore: "by 30/10/2026",
@@ -18,12 +19,11 @@ const translations = {
       RSVPdate: "12/12/2026 (Saturday)",
       RSVPreception: "Reception — 6:00pm",
       RSVPdinner: "Dinner — 7:00pm",
-      RSVPlocation: "Xin Cuisine Chinese Restaurant, Concorde Hotel Kuala Lumpur",
+      RSVPlocation: "Xin Cuisine Chinese Restaurant, <br>Concorde Hotel Kuala Lumpur",
       RSVPtheme: "Chinese Traditional Wear",
 
-      //rsvp form
-      formHeadline: "Save Your Seat at Our Table",
-      formSubheadline: "Kindly RSVP",
+      // rsvp form
+      formSubheadline: "Kindly RSVP ",
       formFullname: "Full name",
       formInvitedBy: "Invited by",
       formWhichSide: "Select",
@@ -51,7 +51,7 @@ const translations = {
       formSendUsBlessingSubtitle: "We understand you can't join us, but we'd love to hear from you!",
       placeholderMessage: "Wishing you a lifetime of love and happiness...",
       buttonSubmit: "Submit RSVP",
-	  buttonSubmitting: "Submitting...",
+      buttonSubmitting: "Submitting...",
 
       // footer
       authorCopyright: "Author: Joey Lee @ 2026",
@@ -62,11 +62,9 @@ const translations = {
       // modal
       modalTitle: "Wedding RSVP",
       modalParkingTitle: "Parking Information",
-      modalParkingStep1: "From the lobby, turn left into the parking entrance — pay with TnG or a debit card.",
+      modalParkingStep1: "From the lobby, turn left into the parking entrance.",
       modalParkingStep2: "Once parked, head to Level 2B and follow the signs for \u201cAccess to Link Bridge.\u201d",
       modalParkingStep3: "Cross the bridge and follow the signage down to the reception — we'll be there to greet you.",
-      modalParkingNote: "Parking: RM12.00 nett flat rate per car, per entry.",
-      modalDownload: "Download",
       modalShare: "Share",
       modalAddCalendar: "Add to Calendar",
 
@@ -82,20 +80,21 @@ const translations = {
       mealNone: "None",
       gettingThere: "Getting There",
       locationTitle: "Xin Cuisine Chinese Restaurant",
-      locationFullAddress: "Concorde Hotel, 2, Jln Sultan Ismail, Kuala Lumpur, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
+      locationFullAddress: "Concorde Hotel, 2, Jln Sultan Ismail, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
       confirmationConfirm: "RSVP Confirmed",
    },
 
    zh: {
       rsvpMain: "J&A",
+
       // welcome section
       welcomeHeadline: "我們要結婚了！",
-      welcomeSubheadline: "我們誠摯邀請您與我們最親愛的人們相聚，共同慶祝這份喜悅與結合。",
+      welcomeSubheadline: "有生之年•欣喜相逢<br>佳期已定•敬備喜筵<br><br>誠摯邀請您參加我們的婚禮喜宴",
       lovelyCouple: "傑晟 與 張融",
-	  rsvpButton: "敬請回覆",
+      rsvpButton: "敬請回覆",
 
       // rsvp section
-      RSVPbefore: "請於 2026年10月30日前回覆",
+      RSVPbefore: "請於2026年10月30日前回覆",
       RSVPheadline: "我們的大喜之日即將到來！",
       RSVPsubheadline: "懷著滿心的喜悅，誠邀您見證我們的永恆於",
       countdownDays: "天",
@@ -105,12 +104,11 @@ const translations = {
       RSVPdate: "2026年12月12日（星期六）",
       RSVPreception: "迎賓 — 晚上 6:00",
       RSVPdinner: "晚宴 — 晚上 7:00",
-      RSVPlocation: "新故鄉酒樓，吉隆坡協和酒店",
-      RSVPtheme: "中國傳統服飾",
+      RSVPlocation: "Xin Cuisine Chinese Restaurant, <br>Concorde Hotel Kuala Lumpur",
+      RSVPtheme: "中式服裝",
 
       // rsvp form
-      formHeadline: "為您留一席之位",
-      formSubheadline: "敬請回覆",
+      formSubheadline: "敬",
       formFullname: "姓名",
       formInvitedBy: "受邀方",
       formWhichSide: "請選擇",
@@ -138,7 +136,7 @@ const translations = {
       formSendUsBlessingSubtitle: "我們理解您無法出席，但仍非常希望收到您的祝福！",
       placeholderMessage: "祝福你們永浴愛河，幸福美滿……",
       buttonSubmit: "提交回覆",
-	  buttonSubmitting: "提交中……",
+      buttonSubmitting: "提交中……",
 
       // footer
       authorCopyright: "作者：Joey Lee @ 2026",
@@ -149,11 +147,9 @@ const translations = {
       // modal
       modalTitle: "婚禮回覆",
       modalParkingTitle: "停車資訊",
-      modalParkingStep1: "從大堂出發，向左轉進入停車場入口 — 可使用 TnG 或簽帳卡（Debit Card）付款。",
+      modalParkingStep1: "從大廳入口出發，直行，然後左轉進入停車場入口。",
       modalParkingStep2: "停好車後，請前往 2B 樓層，並留意「通往連接橋」的指示牌。",
       modalParkingStep3: "穿過連接橋，沿指示牌走向宴會廳 — 我們將在那裡迎接您。",
-      modalParkingNote: "停車費：每輛車每次進場收費 RM12.00（淨價，統一收費）。",
-      modalDownload: "下載",
       modalShare: "分享",
       modalAddCalendar: "新增至日曆",
 
@@ -168,8 +164,8 @@ const translations = {
       summaryLabelMessage: "留言",
       mealNone: "無",
       gettingThere: "交通指南",
-      locationTitle: "新故鄉酒樓",
-      locationFullAddress: "吉隆坡協和酒店，蘇丹依斯邁路2號，50250 吉隆坡，吉隆坡聯邦直轄區",
+      locationTitle: "Xin Cuisine Chinese Restaurant",
+      locationFullAddress: "Concorde Hotel, 2, Jln Sultan Ismail, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
       confirmationConfirm: "回覆已確認",
    },
 };

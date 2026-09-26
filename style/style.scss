@@ -139,9 +139,9 @@ nav.navbar {
    }
 }
 
-@mixin rsvpButton {
+@mixin rsvpButton($rsvpWidth: 100%) {
    background: $secondary;
-   width: 100%;
+   width: $rsvpWidth;
    border-radius: 0.5rem;
    padding: 0.5rem;
    border: 2px solid $secondary;
@@ -155,7 +155,7 @@ nav.navbar {
    }
 }
 
-button{
+button {
    @include rsvpButton;
 }
 section[id] {
@@ -295,7 +295,7 @@ section {
                   margin-bottom: 0.5rem;
                   display: flex;
                   gap: 8px;
-                  align-items: start;
+                  align-items: center;
                   img {
                      width: 100%;
                      filter: invert(99%) sepia(32%) saturate(1469%) hue-rotate(315deg) brightness(100%) contrast(82%);
@@ -417,18 +417,21 @@ footer {
    font-size: 14px;
    .modal-header {
       position: relative;
+      padding: 1rem 1rem 1rem 0;
       &::after {
          @include goldLine;
       }
    }
 
-   a, a:not([href]):not([class]), a:not([href]):not([class]):hover{
-      @include rsvpButton;
-   }
+   .modal-body {
+      padding: 1rem 0;
 
-   button,
-   a {
-      width: unset !important;
+      button,
+      a,
+      a:not([href]):not([class]),
+      a:not([href]):not([class]):hover {
+         @include rsvpButton(unset!important);
+      }
    }
 
    .summary-row {
@@ -489,8 +492,8 @@ footer {
             font-size: 12px;
          }
 
-         .location{
-            img{
+         .location {
+            img {
                width: 100%;
                filter: invert(99%) sepia(32%) saturate(1469%) hue-rotate(315deg) brightness(100%) contrast(82%);
                max-width: 30px;
@@ -500,6 +503,7 @@ footer {
    }
 }
 
+// ZH only
 html[lang="zh"] {
    * {
       vertical-align: middle;
@@ -516,6 +520,13 @@ html[lang="zh"] {
       .zh-text {
          line-height: 0.8;
          font-size: calc(3rem + 0.9vw);
+      }
+   }
+
+   h3 {
+      .zh-text {
+         line-height: 0.8;
+         font-size: calc(2rem + 0.6vw);
       }
    }
 
@@ -574,13 +585,11 @@ html[lang="zh"] {
          }
       }
 
-      #modal-parking-info {
-         .parking-steps {
-            li {
-               line-height: 1.2;
-               .zh-text {
-                  font-size: 1.2rem;
-               }
+      .parking-steps {
+         li {
+            line-height: 1.1;
+            .zh-text {
+               font-size: 1.2rem;
             }
          }
       }
@@ -609,7 +618,6 @@ html[lang="zh"] {
    }
 }
 
-// Scroll animation utilities
 // Scroll animation utilities
 .fade-in-section {
    opacity: 0;

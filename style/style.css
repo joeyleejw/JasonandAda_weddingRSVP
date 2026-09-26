@@ -264,7 +264,7 @@ section#rsvp .bg-banner.bg-overlay .playground > div {
   margin-bottom: 0.5rem;
   display: flex;
   gap: 8px;
-  align-items: start;
+  align-items: center;
 }
 section#rsvp .bg-banner.bg-overlay .playground > div img {
   width: 100%;
@@ -378,6 +378,7 @@ footer a {
 }
 .confirmation-modal .modal-header {
   position: relative;
+  padding: 1rem 1rem 1rem 0;
 }
 .confirmation-modal .modal-header::after {
   content: "";
@@ -390,9 +391,15 @@ footer a {
   right: 0;
   bottom: 0;
 }
-.confirmation-modal a, .confirmation-modal a:not([href]):not([class]), .confirmation-modal a:not([href]):not([class]):hover {
+.confirmation-modal .modal-body {
+  padding: 1rem 0;
+}
+.confirmation-modal .modal-body button,
+.confirmation-modal .modal-body a,
+.confirmation-modal .modal-body a:not([href]):not([class]),
+.confirmation-modal .modal-body a:not([href]):not([class]):hover {
   background: #c9a24b;
-  width: 100%;
+  width: unset !important;
   border-radius: 0.5rem;
   padding: 0.5rem;
   border: 2px solid #c9a24b;
@@ -400,13 +407,12 @@ footer a {
   color: #000;
   text-align: center;
 }
-.confirmation-modal a:active, .confirmation-modal a:not([href]):not([class]):active, .confirmation-modal a:not([href]):not([class]):hover:active {
+.confirmation-modal .modal-body button:active,
+.confirmation-modal .modal-body a:active,
+.confirmation-modal .modal-body a:not([href]):not([class]):active,
+.confirmation-modal .modal-body a:not([href]):not([class]):hover:active {
   background: transparent;
   color: #c9a24b;
-}
-.confirmation-modal button,
-.confirmation-modal a {
-  width: unset !important;
 }
 .confirmation-modal .summary-row {
   border-bottom: 0.3px solid rgba(201, 162, 75, 0.4784313725);
@@ -492,6 +498,10 @@ html[lang=zh] h2 .zh-text {
   line-height: 0.8;
   font-size: calc(3rem + 0.9vw);
 }
+html[lang=zh] h3 .zh-text {
+  line-height: 0.8;
+  font-size: calc(2rem + 0.6vw);
+}
 html[lang=zh] p .zh-text,
 html[lang=zh] label .zh-text,
 html[lang=zh] span .zh-text,
@@ -526,10 +536,10 @@ html[lang=zh] .confirmation-modal h6 .zh-text {
 html[lang=zh] .confirmation-modal span .zh-text {
   font-size: 1.3rem;
 }
-html[lang=zh] .confirmation-modal #modal-parking-info .parking-steps li {
-  line-height: 1.2;
+html[lang=zh] .confirmation-modal .parking-steps li {
+  line-height: 1.1;
 }
-html[lang=zh] .confirmation-modal #modal-parking-info .parking-steps li .zh-text {
+html[lang=zh] .confirmation-modal .parking-steps li .zh-text {
   font-size: 1.2rem;
 }
 html[lang=zh] .confirmation-modal button,
